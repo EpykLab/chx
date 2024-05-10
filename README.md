@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="assets/ize.png" alt="ipcheck" width="200px">
+  <img src="assets/ipchecklogo.png" alt="ipcheck" width="200px">
   <br>
 </h1>
 
