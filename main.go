@@ -56,7 +56,7 @@ func main() {
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		log.Fatalf("Unable to response response: %v", err)
+		log.Fatalf("Unable to parse response: %v", err)
 	}
 
 	m := make(map[string]interface{})
@@ -65,9 +65,11 @@ func main() {
 		log.Fatal(err)
 	}
 
-	output, err := json.Marshal(m)
+	jsBtye, err := json.MarshalIndent(m, "", "	")
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(string(output))
+
+	output := string(jsBtye)
+	fmt.Println(output)
 }
