@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="assets/ize.png" alt="katana" width="200px">
+  <img src="assets/ize.png" alt="ipcheck" width="200px">
   <br>
 </h1>
 
@@ -11,3 +11,7 @@
 <!-- Current Release -->
 <a href="https://github.com/epyklab/ipcheck/releases"><img src="https://img.shields.io/github/release/epyklab/ipcheck"></a>
 </p>
+
+## Summary
+
+IPCheck is a go application that faciliates investigation of IP addresses in the terminal so as to avoid the need to context switch when you are already working in the terminal. For now, IPCheck only makes use of AbuseIP DB, but future plan include integrations into into Crowdsec, and OTX.
