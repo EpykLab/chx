@@ -3,7 +3,7 @@
   <br>
 </h1>
 
-<h4 align="center">CLI IP Investigation Tool</h4>
+<h4 align="center">An IP Investigation Tool for the CLI</h4>
 
 <p align="center">
 <!-- Go report card -->
