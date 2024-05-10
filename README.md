@@ -15,3 +15,27 @@
 ## Summary
 
 IPCheck is a go application that faciliates investigation of IP addresses in the terminal so as to avoid the need to context switch when you are already working in the terminal. For now, IPCheck only makes use of AbuseIP DB, but future plan include integrations into into Crowdsec, and OTX.
+
+## Installation
+
+The easiest way to install ipcheck is go:
+
+```bash
+go install github.com/EpykLab/ipcheck@latest
+```
+
+Prebuilt binaries are also avaiable for download in the [realease section](https://github.com/epyklab/ipcheck/releases).
+
+## Setup
+
+The only requirement for setup is configuring the AbuseIP API key. If you don't have one already, you will need to set up a free AbuseIP account. Once you have one, export the API key as an environmental variable with the following:
+
+```bash
+export abuseipdbkey=<apikey>
+```
+
+A convenient way to have this always available is to add it you your .bashrc/.zshrc file, like so:
+
+```bash
+echo "export abuseipdbkey=<apikey>" >> ~/.zshrc
+```

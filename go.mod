@@ -1,3 +1,3 @@
-module github.com/Epyklab/ipcheck
+module github.com/EpykLab/ipcheck
 
 go 1.22.3
