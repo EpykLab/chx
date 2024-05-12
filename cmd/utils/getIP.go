@@ -1,3 +1,7 @@
+/*
+Copyright © 2024 EpykLab contact@epyklab.com 
+*/
+
 package utils
 
 import (

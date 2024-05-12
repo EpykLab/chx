@@ -1,5 +1,5 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Copyright © 2024 EpykLab contact@epyklab.com 
 */
 package cmd
 
@@ -16,7 +16,8 @@ import (
 var getCmd = &cobra.Command{
 	Use:   "get",
 	Short: "Get information about an ip address",
-	Long:  ``,
+	Long:  `Get information from AbuseIP DB about the IP passeded in. IP's can 
+	passed in as a argument to get, or, passed to get through stdin.`,
 	Args:  cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) < 1 {

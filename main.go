@@ -1,6 +1,7 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Copyright © 2024 EpykLab contact@epyklab.com
 */
+
 package main
 
 import "github.com/EpykLab/ipcheck/cmd"
