@@ -28,17 +28,24 @@ Prebuilt binaries are also avaiable for download in the [realease section](https
 
 ## Setup
 
-The only requirement for setup is configuring the AbuseIP API key. If you don't have one already, you will need to set up a free AbuseIP account. Once you have one, export the API key as an environmental variable with the following:
+The only requirement for setup is configuring the AbuseIP API key. If you don't
+have one already, you will need to set up a [free AbuseIP account](https://www.abuseipdb.com/register?plan=free). Once you have
+one, [Create and export API key](https://www.abuseipdb.com/account/api) as an environmental variable with the following:
 
 ```bash
 export abuseipdbkey=<apikey>
 ```
 
-A convenient way to have this always available is to add it you your .bashrc/.zshrc file, like so:
+
+A convenient way to have this always available is to add it you your
+.bashrc/.zshrc file, like so:
 
 ```bash
 echo "export abuseipdbkey=<apikey>" >> ~/.zshrc
 ```
+
+Note that in feature version of this tools we will like migrate to a dedicated
+config file as there are other services we would like to incorporate.
 
 ## Usage
 
