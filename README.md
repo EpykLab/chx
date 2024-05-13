@@ -34,6 +34,7 @@ one, [Create and export API key](https://www.abuseipdb.com/account/api) as an en
 
 ```bash
 export abuseipdbkey=<apikey>
+export crowdseckey=<apikey>
 ```
 
 
@@ -42,6 +43,7 @@ A convenient way to have this always available is to add it you your
 
 ```bash
 echo "export abuseipdbkey=<apikey>" >> ~/.zshrc
+echo "export crowdseckey=<apikey>" >> ~/.zshrc
 ```
 
 Note that in feature version of this tools we will like migrate to a dedicated
@@ -57,11 +59,12 @@ ipcheck <ip addr>
 
 This will return a json object that can be piped into `jq` for further manipulation.
 
-Ipcheck can also return data within a give time span. For example, you can retrieve the reported information for an IP address over the 30 days. This is passed in as the second argument to ipcheck but is not required. For example:
+Ipcheck can also return data within a give time span. For example, you can
+retrieve the reported information for an IP address over the 30 days. This is
+passed in as the second argument to ipcheck but is not required. For example:
 
 ```bash
 ipcheck 170.205.29.2 20
-
 ```
 
 This will return all information for `170.205.29.2` over the past 20 days. If no
