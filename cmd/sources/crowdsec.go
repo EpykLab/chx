@@ -37,7 +37,7 @@ func GetCrowdSecSmoke(ip string) {
  
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		log.Fatal("Error getting information from Crowsec: %s", err)
+		log.Fatal("Error getting information from Crowsec:", err)
 	}
 
 	defer res.Body.Close()
