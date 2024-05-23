@@ -1,16 +1,16 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-
+Copyright © 2024 contact@epyklab.com
 */
+
 package cmd
 
 import (
+	"bufio"
 	"fmt"
 	"os"
-	"bufio"
 
-	"github.com/spf13/cobra"
 	"github.com/EpykLab/ipcheck/cmd/sources"
+	"github.com/spf13/cobra"
 )
 
 // researchCmd represents the research command
@@ -20,8 +20,10 @@ var researchCmd = &cobra.Command{
 	Long: `Research aggregates information from all configured sources into a condensed report
 
 Research can read in from Stdin, or, can read from arguments passed directly. Additionaly, research
-can output to several formats include json, or txt, or markdown.`,
+can output to several formats include json, or txt, or markdown. If no switches are passed in it defaults
+	search ip addresses`,
 	Run: func(cmd *cobra.Command, args []string) {
+
 		if len(args) < 1 {
 			scanner := bufio.NewScanner(os.Stdin)
 			for scanner.Scan() {
@@ -48,5 +50,6 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	researchCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	researchCmd.Flags().String("hash", "h", "gets information about a hash value. Require OTX api key")
+	researchCmd.Flags().String("domain", "d", "gets information about a domain name. Requires OTX api key")
 }
