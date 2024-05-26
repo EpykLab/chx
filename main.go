@@ -4,7 +4,7 @@ Copyright © 2024 EpykLab contact@epyklab.com
 
 package main
 
-import "github.com/EpykLab/ipcheck/cmd"
+import "github.com/EpykLab/chx/cmd"
 
 func main() {
 	cmd.Execute()

@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/EpykLab/ipcheck/cmd/sources"
+	"github.com/EpykLab/chx/cmd/sources"
 	"github.com/spf13/cobra"
 )
 

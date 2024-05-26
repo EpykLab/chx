@@ -30,7 +30,7 @@ func initHeaders() *Headers {
 	}
 
 	header := Headers{X_OTX_API_KEY: apiKey}
-	header.User_Agent = "ipcheck"
+	header.User_Agent = "chx"
 	header.Content_Type = "application/json"
 
 	return &header

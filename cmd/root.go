@@ -16,9 +16,9 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "ipcheckx",
+	Use:   "chxx",
 	Short: "IP addr research in the command line",
-	Long:  `ipcheck is a cli tool that aims to streamline workflows by bringing IP address lookup and research to the command line, making use of stdin and stdout, allowing it to integrate seemlessly with other tools`,
+	Long:  `chx is a cli tool that aims to streamline workflows by bringing IP address lookup and research to the command line, making use of stdin and stdout, allowing it to integrate seemlessly with other tools`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
@@ -40,7 +40,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.ipcheckx.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.chxx.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
@@ -57,10 +57,10 @@ func initConfig() {
 		home, err := os.UserHomeDir()
 		cobra.CheckErr(err)
 
-		// Search config in home directory with name ".ipcheckx" (without extension).
+		// Search config in home directory with name ".chxx" (without extension).
 		viper.AddConfigPath(home)
 		viper.SetConfigType("yaml")
-		viper.SetConfigName(".ipcheckx")
+		viper.SetConfigName(".chxx")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match

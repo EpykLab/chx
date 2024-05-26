@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/EpykLab/ipcheck/cmd/sources"
+	"github.com/EpykLab/chx/cmd/sources"
 	"github.com/spf13/cobra"
 )
 
@@ -61,4 +61,3 @@ func init() {
 	// is called directly, e.g.:
 	// hashCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
