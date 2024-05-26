@@ -1,4 +1,4 @@
-module github.com/EpykLab/ipcheck
+module github.com/EpykLab/chx
 
 go 1.22.3
 

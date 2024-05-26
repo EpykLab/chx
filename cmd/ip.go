@@ -8,13 +8,13 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/EpykLab/ipcheck/cmd/utils"
+	"github.com/EpykLab/chx/cmd/utils"
 	"github.com/spf13/cobra"
 )
 
 // getCmd represents the get command
 var getCmd = &cobra.Command{
-	Use:   "get",
+	Use:   "ip",
 	Short: "Get information about an ip address",
 	Long: `Get information from AbuseIP DB about the IP passeded in. IP's can 
 	passed in as a argument to get, or, passed to get through stdin.`,

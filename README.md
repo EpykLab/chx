@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="assets/ipchecklogo.png" alt="ipcheck" width="200px">
+  <img src="assets/chxlogo.png" alt="chx" width="200px">
   <br>
 </h1>
 
@@ -7,24 +7,24 @@
 
 <p align="center">
 <!-- Go report card -->
-<a href="https://goreportcard.com/report/github.com/epyklab/ipcheck"><img src="https://goreportcard.com/badge/github.com/epyklab/ipcheck"></a>
+<a href="https://goreportcard.com/report/github.com/epyklab/chx"><img src="https://goreportcard.com/badge/github.com/epyklab/chx"></a>
 <!-- Current Release -->
-<a href="https://github.com/epyklab/ipcheck/releases"><img src="https://img.shields.io/github/release/epyklab/ipcheck"></a>
+<a href="https://github.com/epyklab/chx/releases"><img src="https://img.shields.io/github/release/epyklab/chx"></a>
 </p>
 
 ## Summary
 
-IPCheck is a go application that faciliates investigation of IP addresses in the terminal so as to avoid the need to context switch when you are already working in the terminal. For now, IPCheck only makes use of AbuseIP DB, but future plan include integrations into into Crowdsec, and OTX.
+chx is a go application that faciliates investigation of IP addresses in the terminal so as to avoid the need to context switch when you are already working in the terminal. For now, chx only makes use of AbuseIP DB, but future plan include integrations into into Crowdsec, and OTX.
 
 ## Installation
 
-The easiest way to install ipcheck is go:
+The easiest way to install chx is go:
 
 ```bash
-go install github.com/EpykLab/ipcheck@latest
+go install github.com/EpykLab/chx@latest
 ```
 
-Prebuilt binaries are also avaiable for download in the [realease section](https://github.com/epyklab/ipcheck/releases).
+Prebuilt binaries are also avaiable for download in the [realease section](https://github.com/epyklab/chx/releases).
 
 ## Setup
 
@@ -51,21 +51,21 @@ config file as there are other services we would like to incorporate.
 
 ## Usage
 
-Using ipcheck is simple. simple run the following:
+Using chx is simple. simple run the following:
 
 ```bash
-ipcheck <ip addr>
+chx <ip addr>
 ```
 
 This will return a json object that can be piped into `jq` for further manipulation.
 
-Ipcheck can also return data within a give time span. For example, you can
+chx can also return data within a give time span. For example, you can
 retrieve the reported information for an IP address over the 30 days. This is
-passed in as the second argument to ipcheck but is not required. For example:
+passed in as the second argument to chx but is not required. For example:
 
 ```bash
-ipcheck 170.205.29.2 20
+chx 170.205.29.2 20
 ```
 
 This will return all information for `170.205.29.2` over the past 20 days. If no
-time space is specifed, ipcheck defaults to ruturning information over the past 90 calander days.
+time space is specifed, chx defaults to ruturning information over the past 90 calander days.

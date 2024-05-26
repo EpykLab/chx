@@ -1,5 +1,5 @@
 /*
-Copyright © 2024 EpykLab contact@epyklab.com 
+Copyright © 2024 EpykLab contact@epyklab.com
 */
 
 package utils
@@ -22,7 +22,7 @@ func GetIPInfo(ip string) {
 	var maxAgeInDays string = "90"
 
 	// if len(os.Args) < 2 {
-	// 	fmt.Println("Provide IP address as first argument\n\nEXAMPLE: ipcheck 170.205.29.2")
+	// 	fmt.Println("Provide IP address as first argument\n\nEXAMPLE: chx 170.205.29.2")
 	// 	os.Exit(1)
 	// }
 
