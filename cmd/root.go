@@ -16,7 +16,7 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "chxx",
+	Use:   "chx",
 	Short: "IP addr research in the command line",
 	Long:  `chx is a cli tool that aims to streamline workflows by bringing IP address lookup and research to the command line, making use of stdin and stdout, allowing it to integrate seemlessly with other tools`,
 	// Uncomment the following line if your bare application
