@@ -37,7 +37,7 @@ announce:
     #
     # Default: '{{ mdv2escape .ProjectName }} {{ mdv2escape .Tag }} is out{{ mdv2escape "!" }} Check it out at {{ mdv2escape .ReleaseURL }}'
     # Templates: allowed
-    message_template: 'Chx {{.Tag}} is out{{ mdv2escape "!" }}'
+    message_template: '{{ mdv2escape .ProjectName }} {{ mdv2escape .Tag }} is out{{ mdv2escape "!" }} Check it out at {{ mdv2escape .ReleaseURL }}'
 
     # Parse mode.
     #
@@ -45,4 +45,4 @@ announce:
     #
     # Default: MarkdownV2
     # Since: v1.19
-    parse_mode: HTML
+    parse_mode: MarkdownV2
