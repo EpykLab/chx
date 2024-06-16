@@ -48,7 +48,7 @@ chx <command> [options]
 - 🔑 File hashing
 - 📡 IP address lookup
 - 🔗 Integration with VirusTotal, CrowdSec, AlientVault, and AbuseIPDB
-- ⚙️ Configurable via YAML
+- ⚙️ Configurable via JSON
 - 🖥️ Can take input as argument or stdin
 
 ## 📦 Dependencies
