@@ -33,14 +33,14 @@ Prebuilt binaries are also available under releases.
 After installing the project, you can use the CHX command-line tool as follows:
 
 ```sh
-./chx <command> [options]
+chx <command> [options]
 ```
 
 ### Example Commands
 
-- `./chx domain <domain-name>`
-- `./chx hash <file-path>`
-- `./chx ip <ip-address>`
+- `chx domain <domain-name>`
+- `chx hash <file-path>`
+- `chx ip <ip-address>`
 
 ## ✨ Features
 
