@@ -71,6 +71,8 @@ To configure chx, use `chx config`.
 chx domain example.com
 ```
 
+![domain checks](./assets/domain.gif)
+
 ### 🔑 File Hashing
 
 ```sh
@@ -87,6 +89,11 @@ possible, chx also output to stdout so that output can be piped into other tools
 ```sh
 chx ip 8.8.8.8
 ```
+Basic IP lookups (uses alientvault)
+![basic ip checks](./assets/ip.gif)
+
+More verbose IP looks (uses crowdsec)
+![verbose ip checks](./assets/ipAdvanced.gif)
 
 ## 🔧 Troubleshooting
 
