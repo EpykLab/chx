@@ -79,7 +79,7 @@ chx domain example.com
 chx hash <hash>
 ```
 
-Chx can can work with pipes to take hash values from standard input. In order to be as unix friendly as 
+Chx can work with pipes to take hash values from standard input. In order to be as unix friendly as 
 possible, chx also output to stdout so that output can be piped into other tools. 
 
 ![using chx with pipes](./assets/useChxWithPipes.gif)
