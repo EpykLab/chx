@@ -38,3 +38,4 @@ jobs:
           COSIGN_PWD: ${{ secrets.COSIGN_PASSWORD }}
           COSIGN_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
           COSIGN_PUB: ${{ secrets.COSIGN_PUBLIC_PUB }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
