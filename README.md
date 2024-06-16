@@ -105,6 +105,6 @@ If you encounter any issues, please check the following:
 
 ## 👥 Contributors
 
-- [Your Name](https://github.com/DavidHoenisch)
+- [David Hoenisch](https://github.com/DavidHoenisch)
 
 ## 📜 License
