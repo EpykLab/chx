@@ -62,6 +62,9 @@ Configuration is managed through a json file. The config file is stored in `$HOM
 
 To configure chx, use `chx config`.
 
+![configure chx with json](./assets/config.gif)
+
+
 ### 🌐 Domain Analysis
 
 ```sh
@@ -71,8 +74,13 @@ chx domain example.com
 ### 🔑 File Hashing
 
 ```sh
-chx hash /path/to/file
+chx hash <hash>
 ```
+
+Chx can can work with pipes to take hash values from standard input. In order to be as unix friendly as 
+possible, chx also output to stdout so that output can be piped into other tools. 
+
+![using chx with pipes](./assets/useChxWithPipes.gif)
 
 ### 📡 IP Lookup
 
