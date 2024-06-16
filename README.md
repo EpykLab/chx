@@ -33,22 +33,22 @@ Prebuilt binaries are also available under releases.
 After installing the project, you can use the CHX command-line tool as follows:
 
 ```sh
-./chx <command> [options]
+chx <command> [options]
 ```
 
 ### Example Commands
 
-- `./chx domain <domain-name>`
-- `./chx hash <file-path>`
-- `./chx ip <ip-address>`
+- `chx domain <domain-name>`
+- `chx hash <file-path>`
+- `chx ip <ip-address>`
 
 ## ✨ Features
 
 - 🌐 Domain analysis
 - 🔑 File hashing
 - 📡 IP address lookup
-- 🔗 Integration with VirusTotal and CrowdSec
-- ⚙️ Configurable via YAML
+- 🔗 Integration with VirusTotal, CrowdSec, AlientVault, and AbuseIPDB
+- ⚙️ Configurable via JSON
 - 🖥️ Can take input as argument or stdin
 
 ## 📦 Dependencies
