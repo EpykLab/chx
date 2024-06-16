@@ -1,0 +1,48 @@
+# .goreleaser.yml
+
+builds:
+  - id: "linux-build"
+    dir: "."
+    goos:
+      - linux
+    goarch:
+      - amd64
+    ldflags:
+      - -s -w
+    env:
+      - CGO_ENABLED=0
+
+release:
+  # contain special words like alpha, beta, or rc
+  prerelease: auto
+  extra_files:
+    - glob: ./cosign.pub
+signs:
+  - cmd: cosign
+    stdin: "{{ .Env.COSIGN_PWD }}"
+    args:
+      - "sign-blob"
+      - "--key=cosign.key"
+      - "--output-signature=${signature}"
+      - "${artifact}"
+      - "--yes" # needed on cosign 2.0.0+
+    artifacts: all
+# .goreleaser.yaml
+announce:
+  telegram:
+    enabled: true
+    chat_id: -1002225906239
+
+    # Message template to use while publishing.
+    #
+    # Default: '{{ mdv2escape .ProjectName }} {{ mdv2escape .Tag }} is out{{ mdv2escape "!" }} Check it out at {{ mdv2escape .ReleaseURL }}'
+    # Templates: allowed
+    message_template: 'Chx {{.Tag}} is out{{ mdv2escape "!" }}'
+
+    # Parse mode.
+    #
+    # Valid options are MarkdownV2 and HTML.
+    #
+    # Default: MarkdownV2
+    # Since: v1.19
+    parse_mode: HTML
