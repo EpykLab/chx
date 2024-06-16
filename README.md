@@ -47,7 +47,7 @@ After installing the project, you can use the CHX command-line tool as follows:
 - 🌐 Domain analysis
 - 🔑 File hashing
 - 📡 IP address lookup
-- 🔗 Integration with VirusTotal and CrowdSec
+- 🔗 Integration with VirusTotal, CrowdSec, AlientVault, and AbuseIPDB
 - ⚙️ Configurable via YAML
 - 🖥️ Can take input as argument or stdin
 
