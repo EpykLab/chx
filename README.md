@@ -1,71 +1,95 @@
-<h1 align="center">
-  <img src="assets/chxlogo.png" alt="chx" width="200px">
-  <br>
-</h1>
+# 🛠️ CHX
 
-<h4 align="center">An IP Investigation Tool for the CLI</h4>
+## 📘 Introduction
 
-<p align="center">
-<!-- Go report card -->
-<a href="https://goreportcard.com/report/github.com/epyklab/chx"><img src="https://goreportcard.com/badge/github.com/epyklab/chx"></a>
-<!-- Current Release -->
-<a href="https://github.com/epyklab/chx/releases"><img src="https://img.shields.io/github/release/epyklab/chx"></a>
-</p>
+CHX is a Go-based project providing command-line utilities for domain research, hashing, IP analysis, and other functions. The project includes various commands and integrates with different sources like VirusTotal and CrowdSec.
 
-## Summary
+## 📑 Table of Contents
 
-chx is a go application that faciliates investigation of IP addresses in the terminal so as to avoid the need to context switch when you are already working in the terminal. For now, chx only makes use of AbuseIP DB, but future plan include integrations into into Crowdsec, and OTX.
+- [📘 Introduction](#📘-introduction)
+- [⚙️ Installation](#⚙️-installation)
+- [📝 Usage](#📝-usage)
+- [✨ Features](#✨-features)
+- [📦 Dependencies](#📦-dependencies)
+- [🛠️ Configuration](#🛠️-configuration)
+- [📚 Documentation](#📚-documentation)
+- [💡 Examples](#💡-examples)
+- [🔧 Troubleshooting](#🔧-troubleshooting)
+- [👥 Contributors](#👥-contributors)
+- [📜 License](#📜-license)
 
-## Installation
+## ⚙️ Installation
 
-The easiest way to install chx is go:
+To install CHX, ensure you have Go installed on your machine and run the following commands:
 
-```bash
+```sh
 go install github.com/EpykLab/chx@latest
 ```
 
-Prebuilt binaries are also avaiable for download in the [realease section](https://github.com/epyklab/chx/releases).
+Prebuilt binaries are also available under releases.
 
-## Setup
+## 📝 Usage
 
-The only requirement for setup is configuring the AbuseIP API key. If you don't
-have one already, you will need to set up a [free AbuseIP account](https://www.abuseipdb.com/register?plan=free). Once you have
-one, [Create and export API key](https://www.abuseipdb.com/account/api) as an environmental variable with the following:
+After installing the project, you can use the CHX command-line tool as follows:
 
-```bash
-export abuseipdbkey=<apikey>
-export crowdseckey=<apikey>
+```sh
+./chx <command> [options]
 ```
 
+### Example Commands
 
-A convenient way to have this always available is to add it you your
-.bashrc/.zshrc file, like so:
+- `./chx domain <domain-name>`
+- `./chx hash <file-path>`
+- `./chx ip <ip-address>`
 
-```bash
-echo "export abuseipdbkey=<apikey>" >> ~/.zshrc
-echo "export crowdseckey=<apikey>" >> ~/.zshrc
+## ✨ Features
+
+- 🌐 Domain analysis
+- 🔑 File hashing
+- 📡 IP address lookup
+- 🔗 Integration with VirusTotal and CrowdSec
+- ⚙️ Configurable via YAML
+- 🖥️ Can take input as argument or stdin
+
+## 📦 Dependencies
+
+- 🐹 Go (version 1.18 or higher)
+- 🌐 External APIs for certain functionalities (e.g., VirusTotal, CrowdSec)
+
+## 🛠️ Configuration
+
+Configuration is managed through a json file. The config file is stored in `$HOME/.config/chx/conf.json`.
+
+To configure chx, use `chx config`.
+
+### 🌐 Domain Analysis
+
+```sh
+chx domain example.com
 ```
 
-Note that in feature version of this tools we will like migrate to a dedicated
-config file as there are other services we would like to incorporate.
+### 🔑 File Hashing
 
-## Usage
-
-Using chx is simple. simple run the following:
-
-```bash
-chx <ip addr>
+```sh
+chx hash /path/to/file
 ```
 
-This will return a jgon object that can be piped into `jq` for further manipulation.
+### 📡 IP Lookup
 
-chx can also return data within a give time span. For example, you can
-retrieve the reported information for an IP address over the 30 days. This is
-passed in as the second argument to chx but is not required. For example:
-
-```bash
-chx 170.205.29.2 20
+```sh
+chx ip 8.8.8.8
 ```
 
-This will return all information for `170.205.29.2` over the past 20 days. If no
-time space is specifed, chx defaults to ruturning information over the past 90 calander days.
+## 🔧 Troubleshooting
+
+If you encounter any issues, please check the following:
+
+- Ensure you have the correct API keys in your configuration file.
+- Verify your internet connection for API integrations.
+- Refer to the logs for any error messages.
+
+## 👥 Contributors
+
+- [Your Name](https://github.com/DavidHoenisch)
+
+## 📜 License
