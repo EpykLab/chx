@@ -8,9 +8,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
+
+	"github.com/EpykLab/chx/cmd/utils/configs"
+	"github.com/charmbracelet/log"
 )
 
 const (
@@ -19,11 +21,13 @@ const (
 
 func GetCrowdSecSmoke(ip string) {
 
-	apiKey, ok := os.LookupEnv("crowdseckey")
-	if !ok {
-		fmt.Println("Crowdsec API key not found in Env")
+	key, err := configs.ReadConfig()
+	if err != nil {
+		log.Error(err)
 		os.Exit(1)
 	}
+
+	apiKey := key.CROWD_SEC_KEY
 
 	uri := fmt.Sprintf("smoke/%s", ip)
 

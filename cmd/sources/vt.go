@@ -4,9 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
+
+	"github.com/EpykLab/chx/cmd/utils/configs"
+	"github.com/charmbracelet/log"
 )
 
 const (
@@ -23,11 +25,12 @@ type VtHeaders struct {
 // initialize alianVault API configs
 func initVtHeaders() *VtHeaders {
 
-	apiKey, ok := os.LookupEnv("VT_API_KEY")
-	if !ok {
-		fmt.Println("Can't find API key in environment")
+	key, err := configs.ReadConfig()
+	if err != nil {
+		log.Error(err)
 		os.Exit(1)
 	}
+	apiKey := key.VIRUS_TOTAL_KEY
 
 	header := VtHeaders{X_APIKEY: apiKey}
 	header.User_Agent = "chx"

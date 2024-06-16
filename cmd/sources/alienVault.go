@@ -4,9 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
+
+	"github.com/EpykLab/chx/cmd/utils/configs"
+	"github.com/charmbracelet/log"
 )
 
 const (
@@ -23,11 +25,12 @@ type Headers struct {
 // initialize alianVault API configs
 func initHeaders() *Headers {
 
-	apiKey, ok := os.LookupEnv("ALIEN_VAULT_API_KEY")
-	if !ok {
-		fmt.Println("AlientVault api key not found in env!")
+	key, err := configs.ReadConfig()
+	if err != nil {
+		log.Error(err)
 		os.Exit(1)
 	}
+	apiKey := key.ALIEN_VAULT_KEY
 
 	header := Headers{X_OTX_API_KEY: apiKey}
 	header.User_Agent = "chx"
