@@ -1,1 +1,3 @@
 *.tape
+cosign.key
+cosign.pub
