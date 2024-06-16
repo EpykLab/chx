@@ -8,9 +8,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
+
+	"github.com/EpykLab/chx/cmd/utils/configs"
+	"github.com/charmbracelet/log"
 )
 
 const (
@@ -34,11 +36,13 @@ func GetIPInfo(ip string) {
 
 	// ipAddr := os.Args[1]
 
-	apiKey, ok := os.LookupEnv("abuseipdbkey")
-	if !ok {
-		fmt.Println("AbuseIP DB API key not found in Env")
+	key, err := configs.ReadConfig()
+	if err != nil {
+		log.Error(err)
 		os.Exit(1)
 	}
+
+	apiKey := key.ABUSE_DB_KEY
 
 	req, _ := http.NewRequest("GET", abuseipdbURL, nil)
 

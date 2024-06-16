@@ -57,7 +57,7 @@ Using chx is simple. simple run the following:
 chx <ip addr>
 ```
 
-This will return a json object that can be piped into `jq` for further manipulation.
+This will return a jgon object that can be piped into `jq` for further manipulation.
 
 chx can also return data within a give time span. For example, you can
 retrieve the reported information for an IP address over the 30 days. This is
