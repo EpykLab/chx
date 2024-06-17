@@ -108,3 +108,9 @@ If you encounter any issues, please check the following:
 - [David Hoenisch](https://github.com/DavidHoenisch)
 
 ## 📜 License
+MIT
+
+## 📣 Release Announcments
+Follow  our Telegram channel to stay up to date with the latest news and tool releases from EpykLab!
+
+![telegram channel QR Code](./assets/telegram.png)
