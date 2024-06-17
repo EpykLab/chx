@@ -2,6 +2,9 @@
 
 ## 📘 Introduction
 
+⚠️  Until v1.x.x chx is subject to breaking changes ⚠️
+
+
 CHX is a Go-based project providing command-line utilities for domain research, hashing, IP analysis, and other functions. The project includes various commands and integrates with different sources like VirusTotal and CrowdSec.
 
 ## 📑 Table of Contents
