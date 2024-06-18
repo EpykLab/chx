@@ -14,15 +14,11 @@ import (
 )
 
 // domainCmd represents the domain command
-var domainCmd = &cobra.Command{
-	Use:   "domain",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+var avdomainCmd = &cobra.Command{
+	Use:   "avdomain",
+	Short: "Get details about a domain name",
+	Long: `Get details about a domain name from Alient Vault. Requirs
+	an AlienVault API Key`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var input string
 		if len(args) > 0 {
@@ -48,7 +44,7 @@ to quickly create a Cobra application.`,
 }
 
 func init() {
-	rootCmd.AddCommand(domainCmd)
+	rootCmd.AddCommand(avdomainCmd)
 
 	// Here you will define your flags and configuration settings.
 
