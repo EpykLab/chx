@@ -14,15 +14,11 @@ import (
 )
 
 // hashCmd represents the hash command
-var hashCmd = &cobra.Command{
-	Use:   "hash [input]",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+var avhashCmd = &cobra.Command{
+	Use:   "avhash",
+	Short: "Get details about a hash",
+	Long: `Get details about a file hash using Alient Vault. This requires
+	an Alien Vault API key`,
 	Args: cobra.MaximumNArgs(1), // Allow up to one argument
 	Run: func(cmd *cobra.Command, args []string) {
 		var input string
@@ -49,7 +45,7 @@ to quickly create a Cobra application.`,
 }
 
 func init() {
-	rootCmd.AddCommand(hashCmd)
+	rootCmd.AddCommand(avhashCmd)
 
 	// Here you will define your flags and configuration settings.
 

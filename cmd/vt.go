@@ -14,8 +14,8 @@ import (
 )
 
 // vtCmd represents the vt command
-var vtCmd = &cobra.Command{
-	Use:   "vt",
+var vthashCmd = &cobra.Command{
+	Use:   "vthash",
 	Short: "Check VirusTotal",
 	Long:  `Check a hash against Virus Total`,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -44,7 +44,7 @@ var vtCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(vtCmd)
+	rootCmd.AddCommand(vthashCmd)
 
 	// Here you will define your flags and configuration settings.
 

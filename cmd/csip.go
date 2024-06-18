@@ -14,14 +14,12 @@ import (
 )
 
 // researchCmd represents the research command
-var researchCmd = &cobra.Command{
-	Use:   "research",
-	Short: "Aggregates responses from sources for a given IP",
-	Long: `Research aggregates information from all configured sources into a condensed report
-
-Research can read in from Stdin, or, can read from arguments passed directly. Additionaly, research
-can output to several formats include json, or txt, or markdown. If no switches are passed in it defaults
-	search ip addresses`,
+var csipCmd = &cobra.Command{
+	Use:   "csip",
+	Short: "Get information about an IP address (cs)",
+	Long: `Get information about an IP address using Crowdsec.
+	Requires a crowsec API key. Note that Crowdsec levies daily 
+	limits on the amount of IP's you can check.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) < 1 {
@@ -40,7 +38,7 @@ can output to several formats include json, or txt, or markdown. If no switches 
 }
 
 func init() {
-	rootCmd.AddCommand(researchCmd)
+	rootCmd.AddCommand(csipCmd)
 
 	// Here you will define your flags and configuration settings.
 
@@ -50,6 +48,6 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	researchCmd.Flags().String("hash", "h", "gets information about a hash value. Require OTX api key")
-	researchCmd.Flags().String("domain", "d", "gets information about a domain name. Requires OTX api key")
+	csipCmd.Flags().String("hash", "h", "gets information about a hash value. Require OTX api key")
+	csipCmd.Flags().String("domain", "d", "gets information about a domain name. Requires OTX api key")
 }

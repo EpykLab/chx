@@ -13,11 +13,11 @@ import (
 )
 
 // getCmd represents the get command
-var getCmd = &cobra.Command{
-	Use:   "ip",
+var avipCmd = &cobra.Command{
+	Use:   "avip",
 	Short: "Get information about an ip address",
-	Long: `Get information from AbuseIP DB about the IP passeded in. IP's can 
-	passed in as a argument to get, or, passed to get through stdin.`,
+	Long: `Get information about an IP address using abuse IP DB. 
+	Requires Abuse IP DB API key`,
 	Args: cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) < 1 {
@@ -37,7 +37,7 @@ var getCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getCmd)
+	rootCmd.AddCommand(avipCmd)
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
