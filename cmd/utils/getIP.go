@@ -23,19 +23,6 @@ func GetIPInfo(ip string) {
 
 	var maxAgeInDays string = "90"
 
-	// if len(os.Args) < 2 {
-	// 	fmt.Println("Provide IP address as first argument\n\nEXAMPLE: chx 170.205.29.2")
-	// 	os.Exit(1)
-	// }
-
-	// if len(os.Args) == 3 {
-	// 	maxAgeInDays = os.Args[2]
-	// } else {
-	// 	maxAgeInDays = "90"
-	// }
-
-	// ipAddr := os.Args[1]
-
 	key, err := configs.ReadConfig()
 	if err != nil {
 		log.Error(err)
