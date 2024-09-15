@@ -1,5 +1,5 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Copyright © 2024 EpykLab contact@epyklab.com
 */
 package cmd
 
@@ -45,7 +45,6 @@ var avhashCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(avhashCmd)
 
 	// Here you will define your flags and configuration settings.
 

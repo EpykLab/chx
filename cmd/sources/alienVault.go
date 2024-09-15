@@ -18,7 +18,7 @@ const (
 
 type Headers struct {
 	X_OTX_API_KEY string `json:"X-OTX-API-KEY,omitempty"`
-	User_Agent    string `json:User-Agent,omitempty"`
+	User_Agent    string `json:"User-Agent,omitempty"`
 	Content_Type  string `json:"Content-Type,omitempty"`
 }
 

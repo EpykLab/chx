@@ -18,7 +18,7 @@ const (
 
 type VtHeaders struct {
 	X_APIKEY     string `json:"x-apikey,omitempty"`
-	User_Agent   string `json:User-Agent,omitempty"`
+	User_Agent   string `json:"User-Agent,omitempty"`
 	Content_Type string `json:"Content-Type,omitempty"`
 }
 
