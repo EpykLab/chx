@@ -15,7 +15,7 @@ import (
 
 // hashCmd represents the hash command
 var avhashCmd = &cobra.Command{
-	Use:   "avhash",
+	Use:   "alienvault",
 	Short: "Get details about a hash",
 	Long: `Get details about a file hash using Alient Vault. This requires
 	an Alien Vault API key`,

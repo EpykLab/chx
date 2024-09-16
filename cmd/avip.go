@@ -14,7 +14,7 @@ import (
 
 // getCmd represents the get command
 var avipCmd = &cobra.Command{
-	Use:   "avip",
+	Use:   "alienvault",
 	Short: "Get information about an ip address",
 	Long: `Get information about an IP address using abuse IP DB. 
 	Requires Abuse IP DB API key`,

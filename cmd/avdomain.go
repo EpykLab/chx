@@ -15,7 +15,7 @@ import (
 
 // domainCmd represents the domain command
 var avdomainCmd = &cobra.Command{
-	Use:   "avdomain",
+	Use:   "alienvault",
 	Short: "Get details about a domain name",
 	Long: `Get details about a domain name from Alient Vault. Requirs
 	an AlienVault API Key`,
