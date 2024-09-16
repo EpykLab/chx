@@ -11,7 +11,17 @@ builds:
       - -s -w
     env:
       - CGO_ENABLED=0
-
+  - id: "macos-build"
+    dir: "."
+    goos:
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+    env:
+      - CGO_ENABLED=0
 release:
   # contain special words like alpha, beta, or rc
   prerelease: auto
