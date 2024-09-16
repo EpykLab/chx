@@ -25,16 +25,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// domainCmd represents the domain command
 var domainCmd = &cobra.Command{
 	Use:   "domain",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Gather information on a domain name",
+	Long: `Gather information on a domain name from
+one of the provided sources. Currently, only alient vault is supported`,
 	Run: func(cmd *cobra.Command, args []string) {},
 }
 
@@ -42,13 +37,4 @@ func init() {
 	rootCmd.AddCommand(domainCmd)
 
 	avhashCmd.AddCommand(avdomainCmd)
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// domainCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// domainCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

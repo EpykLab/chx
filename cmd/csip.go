@@ -15,7 +15,7 @@ import (
 
 // researchCmd represents the research command
 var csipCmd = &cobra.Command{
-	Use:   "csip",
+	Use:   "crowdsec",
 	Short: "Get information about an IP address (cs)",
 	Long: `Get information about an IP address using Crowdsec.
 	Requires a crowsec API key. Note that Crowdsec levies daily 
