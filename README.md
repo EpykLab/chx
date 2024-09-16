@@ -95,9 +95,6 @@ chx ip 8.8.8.8
 Basic IP lookups (uses alientvault)
 ![basic ip checks](./assets/ip.gif)
 
-More verbose IP looks (uses crowdsec)
-![verbose ip checks](./assets/ipAdvanced.gif)
-
 ## 🔧 Troubleshooting
 
 If you encounter any issues, please check the following:
