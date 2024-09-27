@@ -39,6 +39,8 @@ func initVtHeaders() *VtHeaders {
 	return &header
 }
 
+// TODO: rename func to make it clear that this method
+// handles checking hash values
 func MakeVtRequest(hash string) {
 	headers := initVtHeaders()
 

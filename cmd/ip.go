@@ -29,7 +29,8 @@ var ipCmd = &cobra.Command{
 	Use:   "ip",
 	Short: "Gather information on an IP address",
 	Long: `Gather information on an IP address from
-one of the provided sources, including CrowdSec and Alien Vault`,
+one of the provided sources, including CrowdSec, Alien Vault
+and Abuse IP DB`,
 	Run: func(cmd *cobra.Command, args []string) {},
 }
 
@@ -38,4 +39,6 @@ func init() {
 
 	ipCmd.AddCommand(csipCmd)
 	ipCmd.AddCommand(avipCmd)
+	ipCmd.AddCommand(aipdbCmd)
+
 }

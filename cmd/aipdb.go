@@ -22,19 +22,33 @@ THE SOFTWARE.
 package cmd
 
 import (
+	"bufio"
+	"fmt"
+	"os"
+
+	"github.com/EpykLab/chx/cmd/sources"
 	"github.com/spf13/cobra"
 )
 
-var domainCmd = &cobra.Command{
-	Use:   "domain",
-	Short: "Gather information on a domain name",
-	Long: `Gather information on a domain name from
-one of the provided sources. Currently, only alient vault is supported`,
-	Run: func(cmd *cobra.Command, args []string) {},
+var aipdbCmd = &cobra.Command{
+	Use:   "aipdb",
+	Short: "Search IP address against Abuse IP DB",
+	Long: `Use Abuse IP db to search for information about
+addresses`,
+	Run: func(cmd *cobra.Command, args []string) {
+		if len(args) < 1 {
+			scanner := bufio.NewScanner(os.Stdin)
+			for scanner.Scan() {
+				sources.GetIPInfo(scanner.Text())
+			}
+			if err := scanner.Err(); err != nil {
+				fmt.Fprintln(os.Stderr, "error:", err)
+				os.Exit(1)
+			}
+		} else {
+			sources.GetIPInfo(args[0])
+		}
+	},
 }
 
-func init() {
-	rootCmd.AddCommand(domainCmd)
-
-	domainCmd.AddCommand(avdomainCmd)
-}
+func init() {}

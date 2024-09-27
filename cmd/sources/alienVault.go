@@ -77,6 +77,8 @@ func makeRequest(source string, term string) {
 	fmt.Println(output)
 }
 
+// TODO: rename the following functions for better clarity
+// it should be clear that Alien Vault is being called
 func GetDomainDetails(domain string) {
 	source := "hostname/"
 	makeRequest(source, domain)

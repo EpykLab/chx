@@ -40,5 +40,4 @@ var vthashCmd = &cobra.Command{
 	},
 }
 
-func init() {
-}
+func init() {}

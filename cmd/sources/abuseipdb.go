@@ -2,7 +2,7 @@
 Copyright © 2024 EpykLab contact@epyklab.com
 */
 
-package utils
+package sources
 
 import (
 	"encoding/json"
@@ -19,8 +19,10 @@ const (
 	abuseipdbURL string = "https://api.abuseipdb.com/api/v2/check"
 )
 
+// Gets IP info from Abuse IP Database
 func GetIPInfo(ip string) {
 
+	// TODO: Rename this function for better clarity
 	var maxAgeInDays string = "90"
 
 	key, err := configs.ReadConfig()

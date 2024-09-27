@@ -19,6 +19,7 @@ const (
 	crowdsecBase string = "https://cti.api.crowdsec.net/v2/"
 )
 
+// NOTE: what the heck is the Smoke part about ??
 func GetCrowdSecSmoke(ip string) {
 
 	key, err := configs.ReadConfig()

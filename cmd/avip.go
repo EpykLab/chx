@@ -8,42 +8,32 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/EpykLab/chx/cmd/utils"
+	"github.com/EpykLab/chx/cmd/sources"
 	"github.com/spf13/cobra"
 )
 
 // getCmd represents the get command
 var avipCmd = &cobra.Command{
 	Use:   "alienvault",
-	Short: "Get information about an ip address",
-	Long: `Get information about an IP address using abuse IP DB. 
-	Requires Abuse IP DB API key`,
+	Short: "Get information about an ip address using Alien Vault",
+	Long: `Get information about an IP address using Alient Vault. 
+	Requires Alient Vault API key`,
 	Args: cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) < 1 {
 			scanner := bufio.NewScanner(os.Stdin)
 			for scanner.Scan() {
-				utils.GetIPInfo(scanner.Text())
+				sources.GetIPDetails(scanner.Text())
 			}
 			if err := scanner.Err(); err != nil {
 				fmt.Fprintln(os.Stderr, "error:", err)
 				os.Exit(1)
 			}
 		} else {
-			utils.GetIPInfo(args[0])
+			sources.GetIPDetails(args[0])
 		}
 
 	},
 }
 
-func init() {
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// getCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	//getCmd.Flags().String("")
-}
+func init() {}
