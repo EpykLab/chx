@@ -11,11 +11,15 @@ import (
 )
 
 var cfgFile string
+var version string
 
 var rootCmd = &cobra.Command{
-	Use:   "chx",
-	Short: "IP addr research in the command line",
-	Long:  `chx is a cli tool that aims to streamline workflows by bringing IP address lookup and research to the command line, making use of stdin and stdout, allowing it to integrate seemlessly with other tools`,
+	Use:     "chx",
+	Version: version,
+	Short:   "IP addr research in the command line",
+	Long: `chx is a cli tool that aims to streamline workflows by bringing IP 
+address lookup and research to the command line, making use of stdin and stdout, 
+allowing it to integrate seemlessly with other tools`,
 }
 
 func Execute() {
