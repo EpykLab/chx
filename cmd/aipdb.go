@@ -39,14 +39,14 @@ addresses`,
 		if len(args) < 1 {
 			scanner := bufio.NewScanner(os.Stdin)
 			for scanner.Scan() {
-				sources.GetIPInfo(scanner.Text())
+				sources.GetIPInfoIpabd(scanner.Text())
 			}
 			if err := scanner.Err(); err != nil {
 				fmt.Fprintln(os.Stderr, "error:", err)
 				os.Exit(1)
 			}
 		} else {
-			sources.GetIPInfo(args[0])
+			sources.GetIPInfoIpabd(args[0])
 		}
 	},
 }

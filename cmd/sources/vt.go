@@ -1,3 +1,25 @@
+/*
+Copyright © 2024 contact@epyklab.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
 package sources
 
 import (
@@ -39,12 +61,10 @@ func initVtHeaders() *VtHeaders {
 	return &header
 }
 
-// TODO: rename func to make it clear that this method
-// handles checking hash values
-func MakeVtRequest(hash string) {
+// Get hash values from Virus Total
+func GetHashInfoVT(hash string) {
 	headers := initVtHeaders()
 
-	// NOTE: this is probs a crap way of doing this. What is better
 	url := fmt.Sprint(vtUrl, hash)
 
 	req, _ := http.NewRequest("GET", url, nil)
