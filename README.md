@@ -38,9 +38,9 @@ chx <command> [options]
 
 ### Example Commands
 
-- `chx domain <domain-name>`
-- `chx hash <file-path>`
-- `chx ip <ip-address>`
+- `chx domain alienvault <domain-name>`
+- `chx hash [alientvault, vthash]<file-path>`
+- `chx ip  [aipdb, alienvault, crowdsec] <ip-address>`
 
 ## ✨ Features
 
@@ -68,7 +68,8 @@ To configure chx, use `chx config`.
 ### 🌐 Domain Analysis
 
 ```sh
-chx domain example.com
+chx domain alientvault example.com
+
 ```
 
 ![domain checks](./assets/domain.gif)
@@ -76,7 +77,7 @@ chx domain example.com
 ### 🔑 File Hashing
 
 ```sh
-chx hash <hash>
+chx hash vthash <hash>
 ```
 
 Chx can work with pipes to take hash values from standard input. In order to be as unix friendly as 
@@ -87,7 +88,7 @@ possible, chx also outputs to stdout so that output can be piped into other tool
 ### 📡 IP Lookup
 
 ```sh
-chx ip 8.8.8.8
+chx ip crowdsec 8.8.8.8
 ```
 Basic IP lookups (uses alientvault)
 ![basic ip checks](./assets/ip.gif)
