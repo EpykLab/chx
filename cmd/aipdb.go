@@ -27,6 +27,10 @@ import (
 	"os"
 
 	"github.com/EpykLab/chx/cmd/sources"
+	"github.com/EpykLab/chx/cmd/utils/pretty"
+	"github.com/EpykLab/chx/cmd/utils/pretty/data"
+	"github.com/EpykLab/chx/cmd/utils/shared"
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
@@ -36,19 +40,34 @@ var aipdbCmd = &cobra.Command{
 	Long: `Use Abuse IP db to search for information about
 addresses`,
 	Run: func(cmd *cobra.Command, args []string) {
+		formated := cmd.Flag("format").Changed
+
+		var result interface{}
+
 		if len(args) < 1 {
 			scanner := bufio.NewScanner(os.Stdin)
 			for scanner.Scan() {
-				sources.GetIPInfoIpabd(scanner.Text())
+				result = sources.GetIPInfoIpabd(scanner.Text())
 			}
 			if err := scanner.Err(); err != nil {
 				fmt.Fprintln(os.Stderr, "error:", err)
 				os.Exit(1)
 			}
 		} else {
-			sources.GetIPInfoIpabd(args[0])
+			result = sources.GetIPInfoIpabd(args[0])
+		}
+
+		if formated {
+			err := pretty.PrintContentPretty(data.IP, data.IpAbuseDB, result)
+			if err != nil {
+				log.Error(err)
+			}
+		} else {
+			shared.Out(result)
 		}
 	},
 }
 
-func init() {}
+func init() {
+	aipdbCmd.Flags().Bool("format", false, "pretty print results")
+}

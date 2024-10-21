@@ -1,6 +1,14 @@
 package pretty
 
-import "errors"
+import (
+	"errors"
+
+	"github.com/EpykLab/chx/cmd/utils/pretty/data"
+)
+
+type markdownPrinter interface {
+	printer(d any) error
+}
 
 // Handles printing the content to standard out
 // in pretty format
@@ -8,38 +16,44 @@ import "errors"
 //	dtype: data type, such as IP, domain, or hash,
 //	source: source of data such as alienvault or crowdsec,
 //	content: json content that will be parsed and pretty printed
-func PrintContentPretty(dtype string, source string, content string) error {
+func PrintContentPretty(dtype data.Dtype, source data.Source, content interface{}) error {
 	switch dtype {
-	case "domain":
+	case data.Domain:
 		switch source {
-		case "alienvault":
-			if err := parseAVIPContent(); err != nil {
+		case data.AlienVault:
+			d := content.(*AlienVaultDomain)
+			if err := d.printer(d); err != nil {
 				return err
 			}
 		}
-	case "hash":
+	case data.Hash:
 		switch source {
-		case "vt":
-			if err := parseAVTHashContent(); err != nil {
+		case data.VirusTotal:
+			d := content.(*VirusTotalHash)
+			if err := d.printer(d); err != nil {
 				return err
 			}
-		case "alienvault":
-			if err := parseAVTHashContent(); err != nil {
+		case data.AlienVault:
+			d := content.(*AlienVaultHash)
+			if err := d.printer(d); err != nil {
 				return err
 			}
 		}
-	case "ip":
+	case data.IP:
 		switch source {
-		case "alienvault":
-			if err := parseAVIPContent(); err != nil {
+		case data.AlienVault:
+			d := content.(*AlientVaultIP)
+			if err := d.printer(d); err != nil {
 				return err
 			}
-		case "aipdb":
-			if err := parseAIPDBIPContent(); err != nil {
+		case data.IpAbuseDB:
+			d := content.(*AipdbIP)
+			if err := d.printer(d); err != nil {
 				return err
 			}
-		case "crowdsec":
-			if err := parseCSIPContent(); err != nil {
+		case data.CrowdSec:
+			d := content.(*CrowdSecIP)
+			if err := d.printer(d); err != nil {
 				return err
 			}
 		}

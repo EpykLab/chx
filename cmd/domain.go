@@ -35,6 +35,5 @@ one of the provided sources. Currently, only alient vault is supported`,
 
 func init() {
 	rootCmd.AddCommand(domainCmd)
-
 	domainCmd.AddCommand(avdomainCmd)
 }

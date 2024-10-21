@@ -1,6 +1,6 @@
 package pretty
 
-type CrowdSec struct {
+type CrowdSecIP struct {
 	AsName        string  `json:"as_name,omitempty"`
 	AsNum         float64 `json:"as_num,omitempty"`
 	AttackDetails []struct {
@@ -99,7 +99,7 @@ type CrowdSec struct {
 	} `json:"target_countries,omitempty"`
 }
 
-type Aipdb struct {
+type AipdbIP struct {
 	Data struct {
 		AbuseConfidenceScore float64       `json:"abuseConfidenceScore,omitempty"`
 		CountryCode          string        `json:"countryCode,omitempty"`
@@ -118,7 +118,7 @@ type Aipdb struct {
 	} `json:"data,omitempty"`
 }
 
-type AlientVault struct {
+type AlientVaultIP struct {
 	AccuracyRadius float64 `json:"accuracy_radius,omitempty"`
 	AreaCode       float64 `json:"area_code,omitempty"`
 	Asn            string  `json:"asn,omitempty"`

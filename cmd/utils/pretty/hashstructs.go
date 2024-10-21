@@ -1,6 +1,6 @@
 package pretty
 
-type AlientVaultHash struct {
+type AlienVaultHash struct {
 	BaseIndicator struct {
 		AccessReason string  `json:"access_reason,omitempty"`
 		AccessType   string  `json:"access_type,omitempty"`

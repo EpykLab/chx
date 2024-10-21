@@ -29,6 +29,10 @@ import (
 	"strings"
 
 	"github.com/EpykLab/chx/cmd/sources"
+	"github.com/EpykLab/chx/cmd/utils/pretty"
+	"github.com/EpykLab/chx/cmd/utils/pretty/data"
+	"github.com/EpykLab/chx/cmd/utils/shared"
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
@@ -39,6 +43,10 @@ var avdomainCmd = &cobra.Command{
 	Long: `Get details about a domain name from Alient Vault. Requirs
 	an AlienVault API Key`,
 	Run: func(cmd *cobra.Command, args []string) {
+		formated := cmd.Flag("format").Changed
+
+		var result interface{}
+
 		var input string
 		if len(args) > 0 {
 			// If an argument is provided, use it as the input
@@ -58,8 +66,20 @@ var avdomainCmd = &cobra.Command{
 		input = strings.TrimSpace(input)
 
 		// Process the hash
-		sources.GetDomainDetailsAV(input)
+		result = sources.GetDomainDetailsAV(input)
+
+		if formated {
+			err := pretty.PrintContentPretty(data.Domain, data.AlienVault, result)
+			if err != nil {
+				log.Error(err)
+			}
+		} else {
+			shared.Out(result)
+		}
+
 	},
 }
 
-func init() {}
+func init() {
+	avdomainCmd.Flags().Bool("format", false, "pretty print results")
+}

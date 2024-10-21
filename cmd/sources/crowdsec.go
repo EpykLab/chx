@@ -30,6 +30,7 @@ import (
 	"os"
 
 	"github.com/EpykLab/chx/cmd/utils/configs"
+	"github.com/EpykLab/chx/cmd/utils/pretty"
 	"github.com/charmbracelet/log"
 )
 
@@ -38,7 +39,7 @@ const (
 )
 
 // NOTE: what the heck is the Smoke part about ??
-func GetCrowdSecSmoke(ip string) {
+func GetCrowdSecSmoke(ip string) *pretty.CrowdSecIP {
 
 	key, err := configs.ReadConfig()
 	if err != nil {
@@ -65,18 +66,12 @@ func GetCrowdSecSmoke(ip string) {
 		log.Fatalf("Unable to parse response from crowsec %v", err)
 	}
 
-	m := make(map[string]interface{})
-	err = json.Unmarshal(body, &m)
+	var final pretty.CrowdSecIP
+
+	err = json.Unmarshal(body, &final)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	jsByte, err := json.MarshalIndent(m, "", "	")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	output := string(jsByte)
-	fmt.Println(output)
-
+	return &final
 }

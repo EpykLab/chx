@@ -28,6 +28,10 @@ import (
 	"os"
 
 	"github.com/EpykLab/chx/cmd/sources"
+	"github.com/EpykLab/chx/cmd/utils/pretty"
+	"github.com/EpykLab/chx/cmd/utils/pretty/data"
+	"github.com/EpykLab/chx/cmd/utils/shared"
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
@@ -39,20 +43,34 @@ var csipCmd = &cobra.Command{
 	Requires a crowsec API key. Note that Crowdsec levies daily 
 	limits on the amount of IP's you can check.`,
 	Run: func(cmd *cobra.Command, args []string) {
+		formated := cmd.Flag("format").Changed
+
+		var result interface{}
 
 		if len(args) < 1 {
 			scanner := bufio.NewScanner(os.Stdin)
 			for scanner.Scan() {
-				sources.GetCrowdSecSmoke(scanner.Text())
+				result = sources.GetCrowdSecSmoke(scanner.Text())
 			}
 			if err := scanner.Err(); err != nil {
 				fmt.Fprintln(os.Stderr, "error:", err)
 				os.Exit(1)
 			}
 		} else {
-			sources.GetCrowdSecSmoke(args[0])
+			result = sources.GetCrowdSecSmoke(args[0])
+		}
+
+		if formated {
+			err := pretty.PrintContentPretty(data.IP, data.CrowdSec, result)
+			if err != nil {
+				log.Error(err)
+			}
+		} else {
+			shared.Out(result)
 		}
 	},
 }
 
-func init() {}
+func init() {
+	csipCmd.Flags().Bool("format", false, "pretty print results")
+}

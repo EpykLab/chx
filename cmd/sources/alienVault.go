@@ -30,6 +30,7 @@ import (
 	"os"
 
 	"github.com/EpykLab/chx/cmd/utils/configs"
+	"github.com/EpykLab/chx/cmd/utils/pretty"
 	"github.com/charmbracelet/log"
 )
 
@@ -61,7 +62,7 @@ func initHeaders() *Headers {
 	return &header
 }
 
-func makeRequest(source string, term string) {
+func makeRequest(source string, term string) []byte {
 	headers := initHeaders()
 
 	// NOTE: this is probs a crap way of doing this. What is better
@@ -84,36 +85,51 @@ func makeRequest(source string, term string) {
 		fmt.Println(err)
 	}
 
-	m := make(map[string]interface{})
-	err = json.Unmarshal(body, &m)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	jsByte, err := json.MarshalIndent(m, "", "	")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	output := string(jsByte)
-	fmt.Println(output)
+	return body
 }
 
 // Get details about domain from AlienVault
-func GetDomainDetailsAV(domain string) {
+func GetDomainDetailsAV(domain string) *pretty.AlienVaultDomain {
 
 	source := "hostname/"
-	makeRequest(source, domain)
+	result := makeRequest(source, domain)
+
+	var final pretty.AlienVaultDomain
+
+	err := json.Unmarshal(result, &final)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return &final
 }
 
 // Get details about IP from AlienVault
-func GetIPDetails(ip string) {
+func GetIPDetails(ip string) *pretty.AlientVaultIP {
 	source := "IPv4/"
-	makeRequest(source, ip)
+	result := makeRequest(source, ip)
+
+	var final pretty.AlientVaultIP
+
+	err := json.Unmarshal(result, &final)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return &final
 }
 
 // Get details about hash from AlienVault
-func GetHashDetails(hash string) {
+func GetHashDetails(hash string) *pretty.AlienVaultHash {
 	source := "file/"
-	makeRequest(source, hash)
+	result := makeRequest(source, hash)
+
+	var final pretty.AlienVaultHash
+
+	err := json.Unmarshal(result, &final)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return &final
 }

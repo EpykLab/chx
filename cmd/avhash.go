@@ -29,6 +29,10 @@ import (
 	"strings"
 
 	"github.com/EpykLab/chx/cmd/sources"
+	"github.com/EpykLab/chx/cmd/utils/pretty"
+	"github.com/EpykLab/chx/cmd/utils/pretty/data"
+	"github.com/EpykLab/chx/cmd/utils/shared"
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
@@ -40,6 +44,10 @@ var avhashCmd = &cobra.Command{
 	an Alien Vault API key`,
 	Args: cobra.MaximumNArgs(1), // Allow up to one argument
 	Run: func(cmd *cobra.Command, args []string) {
+		formated := cmd.Flag("format").Changed
+
+		var result interface{}
+
 		var input string
 		if len(args) > 0 {
 			// If an argument is provided, use it as the input
@@ -59,8 +67,20 @@ var avhashCmd = &cobra.Command{
 		input = strings.TrimSpace(input)
 
 		// Process the hash
-		sources.GetHashDetails(input)
+		result = sources.GetHashDetails(input)
+
+		if formated {
+			err := pretty.PrintContentPretty(data.Hash, data.AlienVault, result)
+			if err != nil {
+				log.Error(err)
+			}
+		} else {
+			shared.Out(result)
+		}
+
 	},
 }
 
-func init() {}
+func init() {
+	avhashCmd.Flags().Bool("format", false, "pretty print results")
+}

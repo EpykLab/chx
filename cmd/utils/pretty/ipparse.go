@@ -1,14 +1,31 @@
 package pretty
 
-// Handles parsing the raw IP json data into some usable
-func parseAVIPContent() error {
+func (s AlientVaultIP) printer(d any) error {
+	t, err := New()
+	if err != nil {
+		return err
+	}
+
+	t.Render(AV, d)
 	return nil
 }
 
-func parseCSIPContent() error {
+func (s CrowdSecIP) printer(d any) error {
+	t, err := New()
+	if err != nil {
+		return err
+	}
+
+	t.Render(CS, d)
 	return nil
 }
 
-func parseAIPDBIPContent() error {
+func (s AipdbIP) printer(d any) error {
+	t, err := New()
+	if err != nil {
+		return err
+	}
+
+	t.Render(AIP, d)
 	return nil
 }
