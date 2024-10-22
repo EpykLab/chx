@@ -63,7 +63,7 @@ var vthashCmd = &cobra.Command{
 		result = sources.GetHashInfoVT(input)
 
 		if formated {
-			err := pretty.PrintContentPretty(data.IP, data.VirusTotal, result)
+			err := pretty.PrintContentPretty(data.Hash, data.VirusTotal, result)
 			if err != nil {
 				log.Error(err)
 			}
@@ -74,5 +74,5 @@ var vthashCmd = &cobra.Command{
 }
 
 func init() {
-	vthashCmd.Flags().Bool("format", false, "pretty print results")
+	vthashCmd.Flags().Bool("format", false, "pretty print content")
 }

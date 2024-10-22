@@ -1,0 +1,164 @@
+{{define "vt"}}
+
+# VirusTotal Hash Report
+
+## File Information
+
+* **MD5:** {{ .Data.Attributes.Md5 }}
+* **SHA1:** {{ .Data.Attributes.Sha1 }}
+* **SHA256:** {{ .Data.Attributes.Sha256 }}
+* **Authentihash:** {{ .Data.Attributes.Authentihash }}
+* **Ssdeep:** {{ .Data.Attributes.Ssdeep }}
+* **Tlsh:** {{ .Data.Attributes.Tlsh }}
+* **Vhash:** {{ .Data.Attributes.Vhash }}
+* **File Size:** {{ .Data.Attributes.Size }} bytes
+* **Magic:** {{ .Data.Attributes.Magic }}
+* **Magika:** {{ .Data.Attributes.Magika }}
+* **Type Tag:** {{ .Data.Attributes.TypeTag }}
+* **Type Extension:** {{ .Data.Attributes.TypeExtension }}
+* **Type Description:** {{ .Data.Attributes.TypeDescription }}
+* **Meaningful Name:** {{ .Data.Attributes.MeaningfulName }}
+* **First Submission Date:** {{ .Data.Attributes.FirstSubmissionDate }}
+* **Last Submission Date:** {{ .Data.Attributes.LastSubmissionDate }}
+* **Last Analysis Date:** {{ .Data.Attributes.LastAnalysisDate }}
+* **Times Submitted:** {{ .Data.Attributes.TimesSubmitted }}
+* **Unique Sources:** {{ .Data.Attributes.UniqueSources }}
+* **Reputation:** {{ .Data.Attributes.Reputation }}
+
+## Names 
+{{ range .Data.Attributes.Names }}
+* {{ . }}
+{{ end }}
+
+## Type Tags
+{{ range .Data.Attributes.TypeTags }}
+* {{ . }}
+{{ end }}
+
+## TRID
+{{ range .Data.Attributes.Trid }}
+* **FileType:** {{ .FileType }}
+* **Probability:** {{ .Probability }}
+{{ end }}
+
+## Last Analysis Stats
+
+* **Confirmed Timeout:** {{ .Data.Attributes.LastAnalysisStats.Confirmed_Timeout }}
+* **Failure:** {{ .Data.Attributes.LastAnalysisStats.Failure }}
+* **Harmless:** {{ .Data.Attributes.LastAnalysisStats.Harmless }}
+* **Malicious:** {{ .Data.Attributes.LastAnalysisStats.Malicious }}
+* **Suspicious:** {{ .Data.Attributes.LastAnalysisStats.Suspicious }}
+* **Timeout:** {{ .Data.Attributes.LastAnalysisStats.Timeout }}
+* **Type Unsupported:** {{ .Data.Attributes.LastAnalysisStats.Type_Unsupported }}
+* **Undetected:** {{ .Data.Attributes.LastAnalysisStats.Undetected }}
+
+## Total Votes
+
+* **Harmless:** {{ .Data.Attributes.TotalVotes.Harmless }}
+* **Malicious:** {{ .Data.Attributes.TotalVotes.Malicious }}
+
+## Popular Threat Classification
+
+* **Suggested Threat Label:** {{ .Data.Attributes.PopularThreatClassification.SuggestedThreatLabel }}
+
+### Popular Threat Category
+{{ range .Data.Attributes.PopularThreatClassification.PopularThreatCategory }}
+* **Value:** {{ .Value }}
+* **Count:** {{ .Count }}
+{{ end }}
+
+### Popular Threat Name
+{{ range .Data.Attributes.PopularThreatClassification.PopularThreatName }}
+* **Value:** {{ .Value }}
+* **Count:** {{ .Count }}
+{{ end }}
+
+## Sigma Analysis Stats
+
+* **Critical:** {{ .Data.Attributes.SigmaAnalysisStats.Critical }}
+* **High:** {{ .Data.Attributes.SigmaAnalysisStats.High }}
+* **Low:** {{ .Data.Attributes.SigmaAnalysisStats.Low }}
+* **Medium:** {{ .Data.Attributes.SigmaAnalysisStats.Medium }}
+
+## Sigma Analysis Results
+
+{{ range .Data.Attributes.SigmaAnalysisResults }}
+* **Rule Title:** {{ .RuleTitle }}
+* **Rule ID:** {{ .RuleID }}
+* **Rule Description:** {{ .RuleDescription }}
+* **Rule Level:** {{ .RuleLevel }}
+* **Rule Author:** {{ .RuleAuthor }}
+{{ end }}
+
+## Crowdsourced IDs Stats
+
+* **High:** {{ .Data.Attributes.CrowdsourcedIdsStats.High }}
+* **Medium:** {{ .Data.Attributes.CrowdsourcedIdsStats.Medium }}
+* **Low:** {{ .Data.Attributes.CrowdsourcedIdsStats.Low }}
+* **Info:** {{ .Data.Attributes.CrowdsourcedIdsStats.Info }}
+
+## Crowdsourced IDs Results
+
+{{ range .Data.Attributes.CrowdsourcedIdsResults }}
+* **Rule Msg:** {{ .RuleMsg }}
+* **Rule ID:** {{ .RuleID }}
+* **Rule URL:** {{ .RuleURL }}
+* **Rule Source:** {{ .RuleSource }}
+* **Alert Severity:** {{ .AlertSeverity }}
+* **Rule Raw:** {{ .RuleRaw }}
+* **Rule References:** {{ range .RuleReferences }} {{ . }} {{ end }}
+
+{{ end }}
+
+## PE Information
+
+* **Timestamp:** {{ .Data.Attributes.PeInfo.Timestamp }}
+* **Machine Type:** {{ .Data.Attributes.PeInfo.MachineType }}
+* **Entry Point:** {{ .Data.Attributes.PeInfo.EntryPoint }}
+* **Imphash:** {{ .Data.Attributes.PeInfo.Imphash }}
+* **Rich PE Header Hash:** {{ .Data.Attributes.PeInfo.RichPeHeaderHash }}
+
+### Compiler Product Versions
+{{ range .Data.Attributes.PeInfo.CompilerProductVersions }}
+* {{ . }}
+{{ end }}
+
+### Exports
+{{ range .Data.Attributes.PeInfo.Exports }}
+* {{ . }}
+{{ end }}
+
+### Sections
+{{ range .Data.Attributes.PeInfo.Sections }}
+* **Name:** {{ .Name }}
+* **Virtual Address:** {{ .VirtualAddress }}
+* **Virtual Size:** {{ .VirtualSize }}
+* **Raw Size:** {{ .RawSize }}
+* **Entropy:** {{ .Entropy }}
+* **MD5:** {{ .Md5 }}
+* **Flags:** {{ .Flags }}
+{{ end }}
+
+### Import List
+{{ range .Data.Attributes.PeInfo.ImportList }}
+* **Library Name:** {{ .LibraryName }}
+* **Imported Functions:** {{ range .ImportedFunctions }} {{ . }} {{ end }}
+{{ end }}
+
+### Resource Details
+{{ range .Data.Attributes.PeInfo.ResourceDetails }}
+* **Type:** {{ .Type }}
+* **SHA256:** {{ .Sha256 }}
+* **Entropy:** {{ .Entropy }}
+* **Chi2:** {{ .Chi2 }}
+{{ end }}
+
+## Detectiteasy
+{{ range .Data.Attributes.Detectiteasy.Values }}
+* **Name:** {{ .Name }}
+* **Version:** {{ .Version }}
+* **Type:** {{ .Type }}
+* **Info:** {{ .Info }}
+{{ end }}
+
+{{end}}

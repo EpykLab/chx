@@ -1,0 +1,28 @@
+{{define "aip"}}
+
+# AbuseIPDB IP Report
+
+## IP Information
+
+* **IP Address:** {{ .Data.IpAddress }}
+* **IP Version:** IPv{{ .Data.IpVersion }}
+* **Country Code:** {{ .Data.CountryCode }}
+* **ISP:** {{ .Data.Isp }}
+* **Domain:** {{ .Data.Domain }}
+* **Hostnames:** {{ range .Data.Hostnames }}{{ . }}, {{ end }}
+* **Public IP:** {{ if .Data.IsPublic }}Yes{{ else }}No{{ end }}
+* **Tor Node:** {{ if .Data.IsTor }}Yes{{ else }}No{{ end }}
+* **Whitelisted:** {{ if .Data.IsWhitelisted }}Yes{{ else }}No{{ end }}
+
+## Abuse Reports
+
+* **Abuse Confidence Score:** {{ .Data.AbuseConfidenceScore }}
+* **Total Reports:** {{ .Data.TotalReports }}
+* **Distinct Users Reporting:** {{ .Data.NumDistinctUsers }}
+* **Last Reported At:** {{ .Data.LastReportedAt }}
+
+## Usage Type
+
+* **Usage Type:** {{ .Data.UsageType }}
+
+{{end}}

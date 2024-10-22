@@ -6,7 +6,7 @@ func (s AlientVaultIP) printer(d any) error {
 		return err
 	}
 
-	t.Render(AV, d)
+	t.Render(AVIP, d)
 	return nil
 }
 

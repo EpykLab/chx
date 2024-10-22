@@ -7,6 +7,6 @@ func (s *AlienVaultDomain) printer(d any) error {
 		return err
 	}
 
-	t.Render(AV, d)
+	t.Render(AVDOMAIN, d)
 	return nil
 }

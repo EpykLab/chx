@@ -15,10 +15,13 @@ var StaticFiles embed.FS
 type File string
 
 const (
-	AV  File = "av"
-	CS  File = "cs"
-	AIP File = "aip"
-	VT  File = "vt"
+	AIP      File = "aip"
+	AV       File = "av"
+	AVIP     File = "av-ip"
+	AVHASH   File = "av-hash"
+	AVDOMAIN File = "av-domain"
+	CS       File = "cs"
+	VT       File = "vt"
 )
 
 type RenderEngine interface {
@@ -31,7 +34,7 @@ type Output struct {
 }
 
 func New() (*Output, error) {
-	tmpl, err := template.ParseFS(StaticFiles, "**/**/*.md")
+	tmpl, err := template.ParseFS(StaticFiles, "**/**/*.gomd")
 	if err != nil {
 		log.Error(err)
 		return nil, err

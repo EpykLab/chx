@@ -16,6 +16,6 @@ func (s AlienVaultHash) printer(d any) error {
 		return err
 	}
 
-	t.Render(AV, d)
+	t.Render(AVHASH, d)
 	return nil
 }

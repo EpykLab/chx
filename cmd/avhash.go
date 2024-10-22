@@ -41,7 +41,7 @@ var avhashCmd = &cobra.Command{
 	Use:   "alienvault",
 	Short: "Get details about a hash",
 	Long: `Get details about a file hash using Alient Vault. This requires
-	an Alien Vault API key`,
+an Alien Vault API key`,
 	Args: cobra.MaximumNArgs(1), // Allow up to one argument
 	Run: func(cmd *cobra.Command, args []string) {
 		formated := cmd.Flag("format").Changed

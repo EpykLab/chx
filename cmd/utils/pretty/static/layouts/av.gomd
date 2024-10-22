@@ -1,0 +1,204 @@
+{{define "av-hash"}}
+
+# AlienVault Hash Report
+
+## Base Indicator
+
+* **ID:** {{ .BaseIndicator.ID }}
+* **Type:** {{ .BaseIndicator.Type }} ({{ .BaseIndicator.TypeTitle }})
+* **Indicator:** {{ .BaseIndicator.Indicator }} 
+* **Title:** {{ .BaseIndicator.Title }}
+* **Description:** {{ .BaseIndicator.Description }}
+* **Content:** 
+    ```
+    {{ .BaseIndicator.Content }}
+    ```
+* **Access Type:** {{ .BaseIndicator.AccessType }}
+* **Access Reason:** {{ .BaseIndicator.AccessReason }}
+
+## Pulse Information
+
+* **Pulse Count:** {{ .PulseInfo.Count }}
+
+### Related Entities
+
+#### AlienVault
+* **Adversaries:** {{ range .PulseInfo.Related.Alienvault.Adversary }}{{ . }}, {{ end }}
+* **Industries:** {{ range .PulseInfo.Related.Alienvault.Industries }}{{ . }}, {{ end }}
+* **Malware Families:** {{ range .PulseInfo.Related.Alienvault.MalwareFamilies }}{{ . }}, {{ end }}
+
+#### Other Sources
+* **Adversaries:** {{ range .PulseInfo.Related.Other.Adversary }}{{ . }}, {{ end }}
+* **Industries:** {{ range .PulseInfo.Related.Other.Industries }}{{ . }}, {{ end }}
+* **Malware Families:** {{ range .PulseInfo.Related.Other.MalwareFamilies }}{{ . }}, {{ end }}
+
+
+## Sections
+
+{{ range .Sections }}
+* {{ . }}
+{{ end }}
+
+## Validation
+
+{{ range .Validation }}
+* {{ . }}
+{{ end }}
+
+## False Positives
+
+{{ range .FalsePositive }}
+* {{ . }}
+{{ end }}
+
+## Hash Summary for {{.Indicator}}
+
+{{end}}
+
+
+{{define "av-domain"}}
+
+# AlienVault Domain Report
+
+## Base Indicator
+
+* **Type:** {{ .Type }} ({{ .TypeTitle }})
+* **Indicator:** {{ .Indicator }} ({{ .Domain }}) 
+
+## Alexa Rank
+
+{{ .Alexa }}
+
+## Pulse Information
+
+* **Pulse Count:** {{ .PulseInfo.Count }}
+
+### Related Entities
+
+#### AlienVault
+* **Adversaries:** {{ range .PulseInfo.Related.Alienvault.Adversary }}{{ . }}, {{ end }}
+* **Industries:** {{ range .PulseInfo.Related.Alienvault.Industries }}{{ . }}, {{ end }}
+* **Malware Families:** {{ range .PulseInfo.Related.Alienvault.MalwareFamilies }}{{ . }}, {{ end }}
+
+#### Other Sources
+* **Adversaries:** {{ range .PulseInfo.Related.Other.Adversary }}{{ . }}, {{ end }}
+* **Industries:** {{ range .PulseInfo.Related.Other.Industries }}{{ . }}, {{ end }}
+* **Malware Families:** {{ range .PulseInfo.Related.Other.MalwareFamilies }}{{ . }}, {{ end }}
+
+## Sections
+
+{{ range .Sections }}
+* {{ . }}
+{{ end }}
+
+## Validation
+
+{{ range .Validation }}
+* {{ . }}
+{{ end }}
+
+## False Positives
+
+{{ range .FalsePositive }}
+* {{ . }}
+{{ end }}
+
+## WHOIS Information
+
+
+{{end}}
+
+
+{{define "av-ip"}}
+
+# AlienVault IP Report
+
+## Base Indicator
+
+* **ID:** {{ .BaseIndicator.ID }}
+* **Type:** {{ .Type }} ({{ .TypeTitle }})
+* **Indicator:** {{ .BaseIndicator.Indicator }} 
+* **Title:** {{ .BaseIndicator.Title }}
+* **Description:** {{ .BaseIndicator.Description }}
+* **Content:** 
+    ```
+    {{ .BaseIndicator.Content }}
+    ```
+* **Access Type:** {{ .BaseIndicator.AccessType }}
+* **Access Reason:** {{ .BaseIndicator.AccessReason }}
+
+## Geolocation Information
+
+* **IP Address:** {{ .Indicator }}
+* **Country:** {{ .CountryName }} ({{ .CountryCode }})  [![Flag]({{ .FlagURL }})]
+* **Continent:** {{ .ContinentCode }}
+* **City:** {{ .City }}
+* **Region:** {{ .Region }}
+* **Postal Code:** {{ .PostalCode }}
+* **Area Code:** {{ .AreaCode }}
+* **Latitude:** {{ .Latitude }}
+* **Longitude:** {{ .Longitude }}
+* **Accuracy Radius:** {{ .AccuracyRadius }} km
+
+## Network Information
+
+* **ASN:** {{ .Asn }}
+
+## Reputation
+
+* **Reputation Score:** {{ .Reputation }}
+
+## Pulse Information
+
+* **Pulse Count:** {{ .PulseInfo.Count }}
+
+### Related Entities
+
+#### AlienVault
+* **Adversaries:** {{ range .PulseInfo.Related.Alienvault.Adversary }}{{ . }}, {{ end }}
+* **Industries:** {{ range .PulseInfo.Related.Alienvault.Industries }}{{ . }}, {{ end }}
+* **Malware Families:** {{ range .PulseInfo.Related.Alienvault.MalwareFamilies }}{{ . }}, {{ end }}
+
+#### Other Sources
+* **Adversaries:** {{ range .PulseInfo.Related.Other.Adversary }}{{ . }}, {{ end }}
+* **Industries:** {{ range .PulseInfo.Related.Other.Industries }}{{ . }}, {{ end }}
+* **Malware Families:** {{ range .PulseInfo.Related.Other.MalwareFamilies }}{{ . }}, {{ end }}
+
+### Pulses
+
+{{ range .PulseInfo.Pulses }}
+  * **Name:** {{ .Name }}
+  * **ID:** {{ .ID }}
+  * **Description:** {{ .Description }}
+  * **TLP:** {{ .TLP }}
+  * **Author:** {{ .Author.Username }}
+  * **Created:** {{ .Created }}
+  * **Tags:** {{ range .Tags }}{{ . }}, {{ end }}
+  * **References:** {{ range .References }}{{ . }}, {{ end }}
+  * **Attack IDs:** 
+      {{ range .AttackIds }}
+        - {{ .DisplayName }} ({{ .Name }})
+      {{ end }}
+{{ end }}
+
+## Sections
+
+{{ range .Sections }}
+* {{ . }}
+{{ end }}
+
+## Validation
+
+{{ range .Validation }}
+* {{ . }}
+{{ end }}
+
+## False Positives
+
+{{ range .FalsePositive }}
+* {{ . }}
+{{ end }}
+
+## WHOIS Information
+
+{{end}}
