@@ -17,7 +17,7 @@ CHX is a Golang based CLI for domain research, file hashes, IP analysis, and oth
 - [🔧 Troubleshooting](#🔧-troubleshooting)
 - [👥 Contributors](#👥-contributors)
 - [📜 License](#📜-license)
-- [ 💎 Markdown Reports](###💎-Pretty Print Results)
+- [ 💎 Markdown Reports](#-pretty-print-results)
 
 ## ⚙️ Installation
 
