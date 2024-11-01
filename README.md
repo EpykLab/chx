@@ -39,7 +39,7 @@ chx <command> [options]
 ### Example Commands
 
 - `chx domain alienvault <domain-name>`
-- `chx hash [alientvault, vthash] <hash>
+- `chx hash [alientvault, vthash] <hash>`
 - `chx ip  [aipdb, alienvault, crowdsec] <ip-address>`
 
 ## ✨ Features
