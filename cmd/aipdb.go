@@ -22,14 +22,13 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"bufio"
-	"fmt"
 	"os"
 
 	"github.com/EpykLab/chx/cmd/sources"
 	"github.com/EpykLab/chx/cmd/utils/pretty"
 	"github.com/EpykLab/chx/cmd/utils/pretty/data"
 	"github.com/EpykLab/chx/cmd/utils/shared"
+	"github.com/EpykLab/chx/cmd/utils/tty"
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
@@ -42,20 +41,13 @@ addresses`,
 	Run: func(cmd *cobra.Command, args []string) {
 		formated := cmd.Flag("format").Changed
 
-		var result interface{}
-
-		if len(args) < 1 {
-			scanner := bufio.NewScanner(os.Stdin)
-			for scanner.Scan() {
-				result = sources.GetIPInfoIpabd(scanner.Text())
-			}
-			if err := scanner.Err(); err != nil {
-				fmt.Fprintln(os.Stderr, "error:", err)
-				os.Exit(1)
-			}
-		} else {
-			result = sources.GetIPInfoIpabd(args[0])
+		input, err := tty.GetInputOrSet(cmd, args)
+		if err != nil {
+			log.Error(err)
+			os.Exit(1)
 		}
+
+		result := sources.GetIPInfoIpabd(input)
 
 		if formated {
 			err := pretty.PrintContentPretty(data.IP, data.IpAbuseDB, result)

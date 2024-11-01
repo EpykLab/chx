@@ -23,14 +23,13 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"bufio"
-	"fmt"
 	"os"
 
 	"github.com/EpykLab/chx/cmd/sources"
 	"github.com/EpykLab/chx/cmd/utils/pretty"
 	"github.com/EpykLab/chx/cmd/utils/pretty/data"
 	"github.com/EpykLab/chx/cmd/utils/shared"
+	"github.com/EpykLab/chx/cmd/utils/tty"
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
@@ -40,25 +39,18 @@ var csipCmd = &cobra.Command{
 	Use:   "crowdsec",
 	Short: "Get information about an IP address using Crowdsec",
 	Long: `Get information about an IP address using Crowdsec.
-	Requires a crowsec API key. Note that Crowdsec levies daily 
+	Requires a crowsec API key. Note that Crowdsec levies daily
 	limits on the amount of IP's you can check.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		formated := cmd.Flag("format").Changed
 
-		var result interface{}
-
-		if len(args) < 1 {
-			scanner := bufio.NewScanner(os.Stdin)
-			for scanner.Scan() {
-				result = sources.GetCrowdSecSmoke(scanner.Text())
-			}
-			if err := scanner.Err(); err != nil {
-				fmt.Fprintln(os.Stderr, "error:", err)
-				os.Exit(1)
-			}
-		} else {
-			result = sources.GetCrowdSecSmoke(args[0])
+		input, err := tty.GetInputOrSet(cmd, args)
+		if err != nil {
+			log.Error(err)
+			os.Exit(1)
 		}
+
+		result := sources.GetCrowdSecSmoke(input)
 
 		if formated {
 			err := pretty.PrintContentPretty(data.IP, data.CrowdSec, result)

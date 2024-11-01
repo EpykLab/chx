@@ -23,15 +23,13 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"fmt"
-	"io"
 	"os"
-	"strings"
 
 	"github.com/EpykLab/chx/cmd/sources"
 	"github.com/EpykLab/chx/cmd/utils/pretty"
 	"github.com/EpykLab/chx/cmd/utils/pretty/data"
 	"github.com/EpykLab/chx/cmd/utils/shared"
+	"github.com/EpykLab/chx/cmd/utils/tty"
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
@@ -46,28 +44,14 @@ an Alien Vault API key`,
 	Run: func(cmd *cobra.Command, args []string) {
 		formated := cmd.Flag("format").Changed
 
-		var result interface{}
-
-		var input string
-		if len(args) > 0 {
-			// If an argument is provided, use it as the input
-			input = args[0]
-		} else {
-			// If no argument is provided, read from stdin
-			var inputRead io.Reader = cmd.InOrStdin()
-			inputBytes, err := io.ReadAll(inputRead)
-			if err != nil {
-				fmt.Fprintln(os.Stderr, "Error reading input:", err)
-				return
-			}
-			input = string(inputBytes)
+		input, err := tty.GetInputOrSet(cmd, args)
+		if err != nil {
+			log.Error(err)
+			os.Exit(1)
 		}
 
-		// Trim any extra newlines or spaces from the input
-		input = strings.TrimSpace(input)
-
 		// Process the hash
-		result = sources.GetHashDetails(input)
+		result := sources.GetHashDetails(input)
 
 		if formated {
 			err := pretty.PrintContentPretty(data.Hash, data.AlienVault, result)
