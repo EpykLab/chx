@@ -2,7 +2,7 @@
 
 ## 📘 Introduction
 
-CHX is a Golang based CLI for domain research, hashing, IP analysis, and other functions. The project includes various commands and integrates with different sources like VirusTotal and CrowdSec.
+CHX is a Golang based CLI for domain research, file hashes, IP analysis, and other functions. The project includes various commands and integrates with different sources like VirusTotal and CrowdSec.
 
 ## 📑 Table of Contents
 
@@ -39,7 +39,7 @@ chx <command> [options]
 ### Example Commands
 
 - `chx domain alienvault <domain-name>`
-- `chx hash [alientvault, vthash]<file-path>`
+- `chx hash [alientvault, vthash] <hash>
 - `chx ip  [aipdb, alienvault, crowdsec] <ip-address>`
 
 ## ✨ Features
