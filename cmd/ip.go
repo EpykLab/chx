@@ -40,5 +40,4 @@ func init() {
 	ipCmd.AddCommand(csipCmd)
 	ipCmd.AddCommand(avipCmd)
 	ipCmd.AddCommand(aipdbCmd)
-
 }

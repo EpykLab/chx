@@ -23,12 +23,12 @@ package sources
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 	"os"
 
 	"github.com/EpykLab/chx/cmd/utils/configs"
+	"github.com/EpykLab/chx/cmd/utils/pretty"
 	"github.com/charmbracelet/log"
 )
 
@@ -37,7 +37,7 @@ const (
 )
 
 // Gets IP info from Abuse IP Database
-func GetIPInfoIpabd(ip string) {
+func GetIPInfoIpabd(ip string) *pretty.AipdbIP {
 
 	// TODO: Add in ability to adjust this time range?
 	var maxAgeInDays string = "90"
@@ -73,17 +73,12 @@ func GetIPInfoIpabd(ip string) {
 		log.Fatalf("Unable to parse response: %v", err)
 	}
 
-	m := make(map[string]interface{})
-	err = json.Unmarshal(body, &m)
+	var final pretty.AipdbIP
+
+	err = json.Unmarshal(body, &final)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	jsByte, err := json.MarshalIndent(m, "", "	")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	output := string(jsByte)
-	fmt.Println(output)
+	return &final
 }

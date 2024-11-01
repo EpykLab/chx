@@ -28,15 +28,23 @@ import (
 	"strings"
 
 	"github.com/EpykLab/chx/cmd/sources"
+	"github.com/EpykLab/chx/cmd/utils/pretty"
+	"github.com/EpykLab/chx/cmd/utils/pretty/data"
+	"github.com/EpykLab/chx/cmd/utils/shared"
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
-// vtCmd represents the vt command
+// vthashCmd represents the vt command
 var vthashCmd = &cobra.Command{
 	Use:   "vthash",
 	Short: "Check VirusTotal",
 	Long:  `Check a hash against Virus Total`,
 	Run: func(cmd *cobra.Command, args []string) {
+		formated := cmd.Flag("format").Changed
+
+		var result interface{}
+
 		var input string
 		if len(args) > 0 {
 			input = args[0]
@@ -52,9 +60,19 @@ var vthashCmd = &cobra.Command{
 
 		input = strings.TrimSpace(input)
 
-		sources.GetHashInfoVT(input)
+		result = sources.GetHashInfoVT(input)
 
+		if formated {
+			err := pretty.PrintContentPretty(data.Hash, data.VirusTotal, result)
+			if err != nil {
+				log.Error(err)
+			}
+		} else {
+			shared.Out(result)
+		}
 	},
 }
 
-func init() {}
+func init() {
+	vthashCmd.Flags().Bool("format", false, "pretty print content")
+}

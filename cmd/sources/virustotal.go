@@ -30,6 +30,7 @@ import (
 	"os"
 
 	"github.com/EpykLab/chx/cmd/utils/configs"
+	"github.com/EpykLab/chx/cmd/utils/pretty"
 	"github.com/charmbracelet/log"
 )
 
@@ -62,7 +63,7 @@ func initVtHeaders() *VtHeaders {
 }
 
 // Get hash values from Virus Total
-func GetHashInfoVT(hash string) {
+func GetHashInfoVT(hash string) *pretty.VirusTotalHash {
 	headers := initVtHeaders()
 
 	url := fmt.Sprint(vtUrl, hash)
@@ -84,17 +85,12 @@ func GetHashInfoVT(hash string) {
 		fmt.Println(err)
 	}
 
-	m := make(map[string]interface{})
-	err = json.Unmarshal(body, &m)
+	var final pretty.VirusTotalHash
+
+	err = json.Unmarshal(body, &final)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	jsByte, err := json.MarshalIndent(m, "", "	")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	output := string(jsByte)
-	fmt.Println(output)
+	return &final
 }

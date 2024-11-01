@@ -1,0 +1,100 @@
+{{define "cs"}}
+
+# CrowdSec IP Report
+
+## IP Information
+
+* **IP Address:** {{ .Ip }}
+* **IP Range:** {{ .IpRange }}
+* **Reverse DNS:** {{ .ReverseDns }}
+* **AS Name:** {{ .AsName }}
+* **AS Number:** {{ .AsNum }}
+
+## Location
+
+* **Country:** {{ .Location.Country }}
+* **City:** {{ .Location.City }}
+* **Latitude:** {{ .Location.Latitude }}
+* **Longitude:** {{ .Location.Longitude }}
+
+## Reputation and Scores
+
+* **Reputation:** {{ .Reputation }}
+* **Confidence:** {{ .Confidence }}
+* **Background Noise:** {{ .BackgroundNoise }} (Score: {{ .BackgroundNoiseScore }})
+* **IP Range Score:** {{ .IpRangeScore }}
+
+### Scores Breakdown
+
+| Period       | Aggressiveness | Anomaly | Threat | Total | Trust |
+|--------------|-----------------|---------|--------|-------|-------|
+| Last Day     | {{ .Scores.LastDay.Aggressiveness }} | {{ .Scores.LastDay.Anomaly }} | {{ .Scores.LastDay.Threat }} | {{ .Scores.LastDay.Total }} | {{ .Scores.LastDay.Trust }} |
+| Last Week    | {{ .Scores.LastWeek.Aggressiveness }} | {{ .Scores.LastWeek.Anomaly }} | {{ .Scores.LastWeek.Threat }} | {{ .Scores.LastWeek.Total }} | {{ .Scores.LastWeek.Trust }} |
+| Last Month   | {{ .Scores.LastMonth.Aggressiveness }} | {{ .Scores.LastMonth.Anomaly }} | {{ .Scores.LastMonth.Threat }} | {{ .Scores.LastMonth.Total }} | {{ .Scores.LastMonth.Trust }} |
+| Overall      | {{ .Scores.Overall.Aggressiveness }} | {{ .Scores.Overall.Anomaly }} | {{ .Scores.Overall.Threat }} | {{ .Scores.Overall.Total }} | {{ .Scores.Overall.Trust }} |
+
+
+## Attack Details
+
+{{ range .AttackDetails }}
+* **Name:** {{ .Name }}
+* **Label:** {{ .Label }}
+* **Description:** {{ .Description }}
+* **References:** {{ range .References }}{{ . }}, {{ end }}
+{{ end }}
+
+## Behaviors
+
+{{ range .Behaviors }}
+* **Name:** {{ .Name }}
+* **Label:** {{ .Label }}
+* **Description:** {{ .Description }}
+* **References:** {{ range .References }}{{ . }}, {{ end }}
+{{ end }}
+
+## MITRE Techniques
+
+{{ range .MitreTechniques }}
+* **Name:** {{ .Name }}
+* **Label:** {{ .Label }}
+* **Description:** {{ .Description }}
+* **References:** {{ range .References }}{{ . }}, {{ end }}
+{{ end }}
+
+## References
+
+{{ range .References }}
+* **Name:** {{ .Name }}
+* **Label:** {{ .Label }}
+* **Description:** {{ .Description }}
+* **References:** {{ range .References }}{{ . }}, {{ end }}
+{{ end }}
+
+## CVEs
+
+{{ range .Cves }}
+* {{ . }}
+{{ end }}
+
+## History
+
+* **First Seen:** {{ .History.FirstSeen }}
+* **Last Seen:** {{ .History.LastSeen }}
+* **Days Age:** {{ .History.DaysAge }}
+* **Full Age:** {{ .History.FullAge }}
+
+## Target Countries
+
+## Classifications
+
+### Classifications
+{{ range .Classifications.Classifications }}
+* {{ . }}
+{{ end }}
+
+### False Positives
+{{ range .Classifications.FalsePositives }}
+* {{ . }}
+{{ end }}
+
+{{end}}
