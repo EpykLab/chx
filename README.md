@@ -80,8 +80,8 @@ chx domain alientvault example.com
 chx hash vthash <hash>
 ```
 
-Chx can work with pipes to take hash values from standard input. In order to be as unix friendly as 
-possible, chx also outputs to stdout so that output can be piped into other tools. 
+Chx can work with pipes to take hash values from standard input. In order to be as unix friendly as
+possible, chx also outputs to stdout so that output can be piped into other tools.
 
 ![using chx with pipes](./assets/useChxWithPipes.gif)
 
@@ -92,6 +92,17 @@ chx ip crowdsec 8.8.8.8
 ```
 Basic IP lookups (uses alientvault)
 ![basic ip checks](./assets/ip.gif)
+
+
+
+
+### Pretty Print Results
+
+All commands how implement a `--format` option that will format the results of a search into markdown format.
+![pretty](./assets/pretty.png)
+
+
+
 
 ## 🔧 Troubleshooting
 
