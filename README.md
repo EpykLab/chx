@@ -99,7 +99,7 @@ Basic IP lookups (uses alientvault)
 
 ### 💎 Pretty Print Results
 
-All commands how implement a `--format` option that will format the results of a search into markdown format.
+All commands now implement a `--format` option that will format the results of a search into markdown format.
 ![pretty](./assets/pretty.png)
 
 
