@@ -50,15 +50,18 @@ var avipCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		result := sources.GetIPDetails(input)
+		for _, line := range input {
 
-		if formated {
-			err := pretty.PrintContentPretty(data.IP, data.AlienVault, result)
-			if err != nil {
-				log.Error(err)
+			result := sources.GetIPDetails(line)
+
+			if formated {
+				err := pretty.PrintContentPretty(data.IP, data.AlienVault, result)
+				if err != nil {
+					log.Error(err)
+				}
+			} else {
+				shared.Out(result)
 			}
-		} else {
-			shared.Out(result)
 		}
 	},
 }

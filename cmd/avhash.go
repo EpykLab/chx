@@ -51,17 +51,19 @@ an Alien Vault API key`,
 		}
 
 		// Process the hash
-		result := sources.GetHashDetails(input)
+		for _, line := range input {
 
-		if formated {
-			err := pretty.PrintContentPretty(data.Hash, data.AlienVault, result)
-			if err != nil {
-				log.Error(err)
+			result := sources.GetHashDetails(line)
+
+			if formated {
+				err := pretty.PrintContentPretty(data.Hash, data.AlienVault, result)
+				if err != nil {
+					log.Error(err)
+				}
+			} else {
+				shared.Out(result)
 			}
-		} else {
-			shared.Out(result)
 		}
-
 	},
 }
 

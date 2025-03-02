@@ -47,16 +47,19 @@ addresses`,
 			os.Exit(1)
 		}
 
-		result := sources.GetIPInfoIpabd(input)
+		for _, line := range input {
+			result := sources.GetIPInfoIpabd(line)
 
-		if formated {
-			err := pretty.PrintContentPretty(data.IP, data.IpAbuseDB, result)
-			if err != nil {
-				log.Error(err)
+			if formated {
+				err := pretty.PrintContentPretty(data.IP, data.IpAbuseDB, result)
+				if err != nil {
+					log.Error(err)
+				}
+			} else {
+				shared.Out(result)
 			}
-		} else {
-			shared.Out(result)
 		}
+
 	},
 }
 
