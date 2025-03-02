@@ -50,16 +50,20 @@ var avdomainCmd = &cobra.Command{
 		}
 
 		// Process the hash
-		result := sources.GetDomainDetailsAV(input)
+		for _, line := range input {
 
-		if formated {
-			err := pretty.PrintContentPretty(data.Domain, data.AlienVault, result)
-			if err != nil {
-				log.Error(err)
+			result := sources.GetDomainDetailsAV(line)
+
+			if formated {
+				err := pretty.PrintContentPretty(data.Domain, data.AlienVault, result)
+				if err != nil {
+					log.Error(err)
+				}
+			} else {
+				shared.Out(result)
 			}
-		} else {
-			shared.Out(result)
 		}
+
 	},
 }
 

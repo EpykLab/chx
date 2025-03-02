@@ -1,6 +1,7 @@
 package tty
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"strings"
@@ -10,22 +11,31 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func GetInputOrSet(cmd *cobra.Command, args []string) (string, error) {
+func GetInputOrSet(cmd *cobra.Command, args []string) ([]string, error) {
 
-	var input string
+	var input []string
 
 	if len(args) > 0 {
-		input = args[0]
+		input = append(input, args[0])
 	} else {
-
 		// If no argument is provided, read from stdin
 		var inputRead io.Reader = cmd.InOrStdin()
-		inputBytes, err := io.ReadAll(inputRead)
-		if err != nil {
-			fmt.Fprintln(os.Stderr, "Error reading input:", err)
-			return "", err
+		iter := bufio.NewReader(inputRead)
+
+		for {
+			line, err := iter.ReadString('\n')
+			if err != nil {
+				if err.Error() == "EOF" {
+					break
+				} else {
+					fmt.Fprintln(os.Stderr, "Error reading input:", err)
+					return []string{}, err
+				}
+			}
+
+			l := strings.TrimSpace(string(line))
+			input = append(input, l)
 		}
-		input = strings.TrimSpace(string(inputBytes))
 	}
 
 	return input, nil

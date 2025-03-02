@@ -50,15 +50,18 @@ var csipCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		result := sources.GetCrowdSecSmoke(input)
+		for _, line := range input {
 
-		if formated {
-			err := pretty.PrintContentPretty(data.IP, data.CrowdSec, result)
-			if err != nil {
-				log.Error(err)
+			result := sources.GetCrowdSecSmoke(line)
+
+			if formated {
+				err := pretty.PrintContentPretty(data.IP, data.CrowdSec, result)
+				if err != nil {
+					log.Error(err)
+				}
+			} else {
+				shared.Out(result)
 			}
-		} else {
-			shared.Out(result)
 		}
 	},
 }
