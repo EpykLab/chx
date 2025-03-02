@@ -5,11 +5,11 @@
 ## Base Indicator
 
 * **ID:** {{ .BaseIndicator.ID }}
-* **Type:** {{ .BaseIndicator.Type }} ({{ .BaseIndicator.TypeTitle }})
-* **Indicator:** {{ .BaseIndicator.Indicator }} 
+* **Type:** {{ .BaseIndicator.Type }} ({{ .BaseIndicator.Title }})
+* **Indicator:** {{ .BaseIndicator.Indicator }}
 * **Title:** {{ .BaseIndicator.Title }}
 * **Description:** {{ .BaseIndicator.Description }}
-* **Content:** 
+* **Content:**
     ```
     {{ .BaseIndicator.Content }}
     ```
@@ -63,7 +63,7 @@
 ## Base Indicator
 
 * **Type:** {{ .Type }} ({{ .TypeTitle }})
-* **Indicator:** {{ .Indicator }} ({{ .Domain }}) 
+* **Indicator:** {{ .Indicator }} ({{ .Domain }})
 
 ## Alexa Rank
 
@@ -117,10 +117,10 @@
 
 * **ID:** {{ .BaseIndicator.ID }}
 * **Type:** {{ .Type }} ({{ .TypeTitle }})
-* **Indicator:** {{ .BaseIndicator.Indicator }} 
+* **Indicator:** {{ .BaseIndicator.Indicator }}
 * **Title:** {{ .BaseIndicator.Title }}
 * **Description:** {{ .BaseIndicator.Description }}
-* **Content:** 
+* **Content:**
     ```
     {{ .BaseIndicator.Content }}
     ```
@@ -175,7 +175,7 @@
   * **Created:** {{ .Created }}
   * **Tags:** {{ range .Tags }}{{ . }}, {{ end }}
   * **References:** {{ range .References }}{{ . }}, {{ end }}
-  * **Attack IDs:** 
+  * **Attack IDs:**
       {{ range .AttackIds }}
         - {{ .DisplayName }} ({{ .Name }})
       {{ end }}
