@@ -28,14 +28,19 @@ import (
 )
 
 var cfgFile string
-var version string
+
+// the version is hardcoded to v0.0.0 so that when
+// those who used go install to download the CLI will
+// be able to run chx update and get the latest release
+// version...otherwise the version would be set to ""
+var version string = "v0.0.0"
 
 var rootCmd = &cobra.Command{
 	Use:     "chx",
 	Version: version,
 	Short:   "IP addr research in the command line",
-	Long: `chx is a cli tool that aims to streamline workflows by bringing IP 
-address lookup and research to the command line, making use of stdin and stdout, 
+	Long: `chx is a cli tool that aims to streamline workflows by bringing IP
+address lookup and research to the command line, making use of stdin and stdout,
 allowing it to integrate seemlessly with other tools`,
 }
 
