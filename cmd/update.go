@@ -57,8 +57,6 @@ var updateCmd = &cobra.Command{
 			fmt.Printf("Update failed: %v\n", err)
 			os.Exit(1)
 		}
-		fmt.Println("Update successful!")
-		fmt.Printf("Running %s version %s\n", appName, version)
 	},
 }
 
@@ -86,7 +84,6 @@ func updateApp() error {
 
 	// Step 2: Find the correct asset (binary or archive) for the current OS/arch
 	assetName := getAssetName()
-	log.Println(assetName)
 	var downloadURL string
 	for _, asset := range release.Assets {
 		if strings.Contains(asset.GetName(), assetName) {
@@ -101,7 +98,6 @@ func updateApp() error {
 
 	// Step 3: Download the new version
 	tempFile := filepath.Join(os.TempDir(), assetName)
-	log.Println(tempFile)
 	err = downloadFile(downloadURL, tempFile)
 	if err != nil {
 		return fmt.Errorf("failed to download update: %v", err)
