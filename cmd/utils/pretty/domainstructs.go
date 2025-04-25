@@ -3,7 +3,7 @@ package pretty
 type AlienVaultDomain struct {
 	Alexa         string `json:"alexa,omitempty"`
 	BaseIndicator struct {
-	} `json:"base_indicator,omitempty"`
+	} `json:"base_indicator"`
 	Domain        string        `json:"domain,omitempty"`
 	FalsePositive []interface{} `json:"false_positive,omitempty"`
 	Indicator     string        `json:"indicator,omitempty"`
@@ -16,14 +16,14 @@ type AlienVaultDomain struct {
 				Adversary       []interface{} `json:"adversary,omitempty"`
 				Industries      []interface{} `json:"industries,omitempty"`
 				MalwareFamilies []interface{} `json:"malware_families,omitempty"`
-			} `json:"alienvault,omitempty"`
+			} `json:"alienvault"`
 			Other struct {
 				Adversary       []interface{} `json:"adversary,omitempty"`
 				Industries      []interface{} `json:"industries,omitempty"`
 				MalwareFamilies []interface{} `json:"malware_families,omitempty"`
-			} `json:"other,omitempty"`
-		} `json:"related,omitempty"`
-	} `json:"pulse_info,omitempty"`
+			} `json:"other"`
+		} `json:"related"`
+	} `json:"pulse_info"`
 	Sections   []string      `json:"sections,omitempty"`
 	Type       string        `json:"type,omitempty"`
 	TypeTitle  string        `json:"type_title,omitempty"`

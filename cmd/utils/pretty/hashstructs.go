@@ -10,7 +10,7 @@ type AlienVaultHash struct {
 		Indicator    string  `json:"indicator,omitempty"`
 		Title        string  `json:"title,omitempty"`
 		Type         string  `json:"type,omitempty"`
-	} `json:"base_indicator,omitempty"`
+	} `json:"base_indicator"`
 	FalsePositive []interface{} `json:"false_positive,omitempty"`
 	Indicator     string        `json:"indicator,omitempty"`
 	PulseInfo     struct {
@@ -22,14 +22,14 @@ type AlienVaultHash struct {
 				Adversary       []interface{} `json:"adversary,omitempty"`
 				Industries      []interface{} `json:"industries,omitempty"`
 				MalwareFamilies []interface{} `json:"malware_families,omitempty"`
-			} `json:"alienvault,omitempty"`
+			} `json:"alienvault"`
 			Other struct {
 				Adversary       []interface{} `json:"adversary,omitempty"`
 				Industries      []interface{} `json:"industries,omitempty"`
 				MalwareFamilies []interface{} `json:"malware_families,omitempty"`
-			} `json:"other,omitempty"`
-		} `json:"related,omitempty"`
-	} `json:"pulse_info,omitempty"`
+			} `json:"other"`
+		} `json:"related"`
+	} `json:"pulse_info"`
 	Sections   []string      `json:"sections,omitempty"`
 	Type       string        `json:"type,omitempty"`
 	TypeTitle  string        `json:"type_title,omitempty"`
@@ -61,7 +61,7 @@ type VirusTotalHash struct {
 				Info   float64 `json:"info,omitempty"`
 				Low    float64 `json:"low,omitempty"`
 				Medium float64 `json:"medium,omitempty"`
-			} `json:"crowdsourced_ids_stats,omitempty"`
+			} `json:"crowdsourced_ids_stats"`
 			Detectiteasy struct {
 				Filetype string `json:"filetype,omitempty"`
 				Values   []struct {
@@ -70,7 +70,7 @@ type VirusTotalHash struct {
 					Type    string `json:"type,omitempty"`
 					Version string `json:"version,omitempty"`
 				} `json:"values,omitempty"`
-			} `json:"detectiteasy,omitempty"`
+			} `json:"detectiteasy"`
 			FirstSubmissionDate float64 `json:"first_submission_date,omitempty"`
 			LastAnalysisDate    float64 `json:"last_analysis_date,omitempty"`
 			LastAnalysisResults struct {
@@ -81,7 +81,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"ALYac,omitempty"`
+				} `json:"ALYac"`
 				APEX struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -89,7 +89,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"APEX,omitempty"`
+				} `json:"APEX"`
 				AVG struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -97,7 +97,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"AVG,omitempty"`
+				} `json:"AVG"`
 				Acronis struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -105,7 +105,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Acronis,omitempty"`
+				} `json:"Acronis"`
 				AhnLab_V3 struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -113,7 +113,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"AhnLab_V3,omitempty"`
+				} `json:"AhnLab_V3"`
 				Alibaba struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -121,7 +121,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Alibaba,omitempty"`
+				} `json:"Alibaba"`
 				Antiy_AVL struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -129,7 +129,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Antiy-AVL,omitempty"`
+				} `json:"Antiy-AVL"`
 				Arcabit struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -137,7 +137,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Arcabit,omitempty"`
+				} `json:"Arcabit"`
 				Avast struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -145,7 +145,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Avast,omitempty"`
+				} `json:"Avast"`
 				Avast_Mobile struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -153,7 +153,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"Avast-Mobile,omitempty"`
+				} `json:"Avast-Mobile"`
 				Avira struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -161,7 +161,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Avira,omitempty"`
+				} `json:"Avira"`
 				Baidu struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -169,7 +169,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"Baidu,omitempty"`
+				} `json:"Baidu"`
 				BitDefender struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -185,7 +185,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"BitDefenderFalx,omitempty"`
+				} `json:"BitDefenderFalx"`
 				Bkav struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -193,7 +193,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Bkav,omitempty"`
+				} `json:"Bkav"`
 				CAT_QuickHeal struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -201,7 +201,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"CAT_QuickHeal,omitempty"`
+				} `json:"CAT_QuickHeal"`
 				CMC struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -209,7 +209,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"CMC,omitempty"`
+				} `json:"CMC"`
 				CTX struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -225,7 +225,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"ClamAV,omitempty"`
+				} `json:"ClamAV"`
 				CrowdStrike struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -233,7 +233,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"CrowdStrike,omitempty"`
+				} `json:"CrowdStrike"`
 				Cybereason struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -241,7 +241,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"Cybereason,omitempty"`
+				} `json:"Cybereason"`
 				Cylance struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -249,7 +249,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Cylance,omitempty"`
+				} `json:"Cylance"`
 				Cynet struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -257,7 +257,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Cynet,omitempty"`
+				} `json:"Cynet"`
 				DeepInstinct struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -265,7 +265,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"DeepInstinct,omitempty"`
+				} `json:"DeepInstinct"`
 				DrWeb struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -273,7 +273,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"DrWeb,omitempty"`
+				} `json:"DrWeb"`
 				ESET_NOD32 struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -281,7 +281,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"ESET-NOD32,omitempty"`
+				} `json:"ESET-NOD32"`
 				Elastic struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -289,7 +289,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Elastic,omitempty"`
+				} `json:"Elastic"`
 				Emsisoft struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -297,7 +297,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Emsisoft,omitempty"`
+				} `json:"Emsisoft"`
 				F_Secure struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -305,7 +305,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"F-Secure,omitempty"`
+				} `json:"F-Secure"`
 				FireEye struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -313,7 +313,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"FireEye,omitempty"`
+				} `json:"FireEye"`
 				Fortinet struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -321,7 +321,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Fortinet,omitempty"`
+				} `json:"Fortinet"`
 				GData struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -329,7 +329,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"GData,omitempty"`
+				} `json:"GData"`
 				Google struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -337,7 +337,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Google,omitempty"`
+				} `json:"Google"`
 				Gridinsoft struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -345,7 +345,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"Gridinsoft,omitempty"`
+				} `json:"Gridinsoft"`
 				Ikarus struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -353,7 +353,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Ikarus,omitempty"`
+				} `json:"Ikarus"`
 				Jiangmin struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -361,7 +361,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Jiangmin,omitempty"`
+				} `json:"Jiangmin"`
 				K7AntiVirus struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -369,7 +369,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"K7AntiVirus,omitempty"`
+				} `json:"K7AntiVirus"`
 				K7GW struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -377,7 +377,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"K7GW,omitempty"`
+				} `json:"K7GW"`
 				Kaspersky struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -385,7 +385,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Kaspersky,omitempty"`
+				} `json:"Kaspersky"`
 				Kingsoft struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -393,7 +393,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Kingsoft,omitempty"`
+				} `json:"Kingsoft"`
 				Lionic struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -401,7 +401,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Lionic,omitempty"`
+				} `json:"Lionic"`
 				Malwarebytes struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -409,7 +409,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Malwarebytes,omitempty"`
+				} `json:"Malwarebytes"`
 				MaxSecure struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -417,7 +417,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"MaxSecure,omitempty"`
+				} `json:"MaxSecure"`
 				McAfee struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -425,7 +425,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"McAfee,omitempty"`
+				} `json:"McAfee"`
 				McAfeeD struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -433,7 +433,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"McAfeeD,omitempty"`
+				} `json:"McAfeeD"`
 				MicroWorld_EScan struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -441,7 +441,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"MicroWorld-eScan,omitempty"`
+				} `json:"MicroWorld-eScan"`
 				Microsoft struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -449,7 +449,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Microsoft,omitempty"`
+				} `json:"Microsoft"`
 				NANO_Antivirus struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -457,7 +457,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"NANO-Antivirus,omitempty"`
+				} `json:"NANO-Antivirus"`
 				Paloalto struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -465,7 +465,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Paloalto,omitempty"`
+				} `json:"Paloalto"`
 				Panda struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -473,7 +473,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Panda,omitempty"`
+				} `json:"Panda"`
 				Rising struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -481,7 +481,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Rising,omitempty"`
+				} `json:"Rising"`
 				SUPERAntiSpyware struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -489,7 +489,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"SUPERAntiSpyware,omitempty"`
+				} `json:"SUPERAntiSpyware"`
 				Sangfor struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -497,7 +497,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Sangfor,omitempty"`
+				} `json:"Sangfor"`
 				SentinelOne struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -505,7 +505,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"SentinelOne,omitempty"`
+				} `json:"SentinelOne"`
 				Skyhigh struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -513,7 +513,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Skyhigh,omitempty"`
+				} `json:"Skyhigh"`
 				Sophos struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -521,7 +521,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Sophos,omitempty"`
+				} `json:"Sophos"`
 				Symantec struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -529,7 +529,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Symantec,omitempty"`
+				} `json:"Symantec"`
 				SymantecMobileInsight struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -537,7 +537,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"SymantecMobileInsight,omitempty"`
+				} `json:"SymantecMobileInsight"`
 				TACHYON struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -545,7 +545,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"TACHYON,omitempty"`
+				} `json:"TACHYON"`
 				Tencent struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -553,7 +553,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Tencent,omitempty"`
+				} `json:"Tencent"`
 				Trapmine struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -561,7 +561,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"Trapmine,omitempty"`
+				} `json:"Trapmine"`
 				TrendMicro struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -569,7 +569,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"TrendMicro,omitempty"`
+				} `json:"TrendMicro"`
 				TrendMicro_HouseCall struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -577,7 +577,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"TrendMicro-HouseCall,omitempty"`
+				} `json:"TrendMicro-HouseCall"`
 				Trustlook struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -585,7 +585,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"Trustlook,omitempty"`
+				} `json:"Trustlook"`
 				VBA32 struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -593,7 +593,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"VBA32,omitempty"`
+				} `json:"VBA32"`
 				VIPRE struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -601,7 +601,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"VIPRE,omitempty"`
+				} `json:"VIPRE"`
 				Varist struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -609,7 +609,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Varist,omitempty"`
+				} `json:"Varist"`
 				ViRobot struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -617,7 +617,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"ViRobot,omitempty"`
+				} `json:"ViRobot"`
 				VirIT struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -625,7 +625,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"VirIT,omitempty"`
+				} `json:"VirIT"`
 				Webroot struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -633,7 +633,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"Webroot,omitempty"`
+				} `json:"Webroot"`
 				Xcitium struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -641,7 +641,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"Xcitium,omitempty"`
+				} `json:"Xcitium"`
 				Yandex struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -649,7 +649,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Yandex,omitempty"`
+				} `json:"Yandex"`
 				Zillya struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -657,7 +657,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"Zillya,omitempty"`
+				} `json:"Zillya"`
 				ZoneAlarm struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -665,7 +665,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"ZoneAlarm,omitempty"`
+				} `json:"ZoneAlarm"`
 				Zoner struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -673,7 +673,7 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"Zoner,omitempty"`
+				} `json:"Zoner"`
 				Alibabacloud struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -681,7 +681,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"alibabacloud,omitempty"`
+				} `json:"alibabacloud"`
 				Huorong struct {
 					Category      string `json:"category,omitempty"`
 					EngineName    string `json:"engine_name,omitempty"`
@@ -689,7 +689,7 @@ type VirusTotalHash struct {
 					EngineVersion string `json:"engine_version,omitempty"`
 					Method        string `json:"method,omitempty"`
 					Result        string `json:"result,omitempty"`
-				} `json:"huorong,omitempty"`
+				} `json:"huorong"`
 				Tehtris struct {
 					Category      string      `json:"category,omitempty"`
 					EngineName    string      `json:"engine_name,omitempty"`
@@ -697,8 +697,8 @@ type VirusTotalHash struct {
 					EngineVersion string      `json:"engine_version,omitempty"`
 					Method        string      `json:"method,omitempty"`
 					Result        interface{} `json:"result,omitempty"`
-				} `json:"tehtris,omitempty"`
-			} `json:"last_analysis_results,omitempty"`
+				} `json:"tehtris"`
+			} `json:"last_analysis_results"`
 			LastAnalysisStats struct {
 				Confirmed_Timeout float64 `json:"confirmed-timeout,omitempty"`
 				Failure           float64 `json:"failure,omitempty"`
@@ -708,7 +708,7 @@ type VirusTotalHash struct {
 				Timeout           float64 `json:"timeout,omitempty"`
 				Type_Unsupported  float64 `json:"type-unsupported,omitempty"`
 				Undetected        float64 `json:"undetected,omitempty"`
-			} `json:"last_analysis_stats,omitempty"`
+			} `json:"last_analysis_stats"`
 			LastModificationDate float64  `json:"last_modification_date,omitempty"`
 			LastSubmissionDate   float64  `json:"last_submission_date,omitempty"`
 			Magic                string   `json:"magic,omitempty"`
@@ -736,10 +736,10 @@ type VirusTotalHash struct {
 				} `json:"resource_details,omitempty"`
 				ResourceLangs struct {
 					ENGLISH_US float64 `json:"ENGLISH US,omitempty"`
-				} `json:"resource_langs,omitempty"`
+				} `json:"resource_langs"`
 				ResourceTypes struct {
 					RTMANIFEST float64 `json:"RT_MANIFEST,omitempty"`
-				} `json:"resource_types,omitempty"`
+				} `json:"resource_types"`
 				RichPeHeaderHash string `json:"rich_pe_header_hash,omitempty"`
 				Sections         []struct {
 					Chi2           float64 `json:"chi2,omitempty"`
@@ -752,7 +752,7 @@ type VirusTotalHash struct {
 					VirtualSize    float64 `json:"virtual_size,omitempty"`
 				} `json:"sections,omitempty"`
 				Timestamp float64 `json:"timestamp,omitempty"`
-			} `json:"pe_info,omitempty"`
+			} `json:"pe_info"`
 			PopularThreatClassification struct {
 				PopularThreatCategory []struct {
 					Count float64 `json:"count,omitempty"`
@@ -763,7 +763,7 @@ type VirusTotalHash struct {
 					Value string  `json:"value,omitempty"`
 				} `json:"popular_threat_name,omitempty"`
 				SuggestedThreatLabel string `json:"suggested_threat_label,omitempty"`
-			} `json:"popular_threat_classification,omitempty"`
+			} `json:"popular_threat_classification"`
 			Reputation      float64 `json:"reputation,omitempty"`
 			SandboxVerdicts struct {
 				C2AE struct {
@@ -771,7 +771,7 @@ type VirusTotalHash struct {
 					MalwareClassification []string `json:"malware_classification,omitempty"`
 					SandboxName           string   `json:"sandbox_name,omitempty"`
 				}
-			} `json:"sandbox_verdicts,omitempty"`
+			} `json:"sandbox_verdicts"`
 			Sha1                 string `json:"sha1,omitempty"`
 			Sha256               string `json:"sha256,omitempty"`
 			SigmaAnalysisResults []struct {
@@ -783,7 +783,7 @@ type VirusTotalHash struct {
 						SubjectLogonId    string
 						SubjectUserName   string
 						SubjectUserSid    string
-					} `json:"values,omitempty"`
+					} `json:"values"`
 				} `json:"match_context,omitempty"`
 				RuleAuthor      string `json:"rule_author,omitempty"`
 				RuleDescription string `json:"rule_description,omitempty"`
@@ -797,15 +797,15 @@ type VirusTotalHash struct {
 				High     float64 `json:"high,omitempty"`
 				Low      float64 `json:"low,omitempty"`
 				Medium   float64 `json:"medium,omitempty"`
-			} `json:"sigma_analysis_stats,omitempty"`
+			} `json:"sigma_analysis_stats"`
 			SigmaAnalysisSummary struct {
 				Sigma_Integrated_Rule_Set__GitHub_ struct {
 					Critical float64 `json:"critical,omitempty"`
 					High     float64 `json:"high,omitempty"`
 					Low      float64 `json:"low,omitempty"`
 					Medium   float64 `json:"medium,omitempty"`
-				} `json:"Sigma Integrated Rule Set (GitHub),omitempty"`
-			} `json:"sigma_analysis_summary,omitempty"`
+				} `json:"Sigma Integrated Rule Set (GitHub)"`
+			} `json:"sigma_analysis_summary"`
 			Size           float64  `json:"size,omitempty"`
 			Ssdeep         string   `json:"ssdeep,omitempty"`
 			Tags           []string `json:"tags,omitempty"`
@@ -814,7 +814,7 @@ type VirusTotalHash struct {
 			TotalVotes     struct {
 				Harmless  float64 `json:"harmless,omitempty"`
 				Malicious float64 `json:"malicious,omitempty"`
-			} `json:"total_votes,omitempty"`
+			} `json:"total_votes"`
 			Trid []struct {
 				FileType    string  `json:"file_type,omitempty"`
 				Probability float64 `json:"probability,omitempty"`
@@ -825,11 +825,11 @@ type VirusTotalHash struct {
 			TypeTags        []string `json:"type_tags,omitempty"`
 			UniqueSources   float64  `json:"unique_sources,omitempty"`
 			Vhash           string   `json:"vhash,omitempty"`
-		} `json:"attributes,omitempty"`
+		} `json:"attributes"`
 		ID    string `json:"id,omitempty"`
 		Links struct {
 			Self string `json:"self,omitempty"`
-		} `json:"links,omitempty"`
+		} `json:"links"`
 		Type string `json:"type,omitempty"`
-	} `json:"data,omitempty"`
+	} `json:"data"`
 }
