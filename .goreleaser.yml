@@ -1,5 +1,4 @@
 # .goreleaser.yml
-
 builds:
   - id: "linux-build"
     dir: "."
@@ -16,6 +15,18 @@ builds:
     dir: "."
     goos:
       - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X github.com/EpykLab/chx/cmd.version={{ .Tag }}
+    env:
+      - CGO_ENABLED=0
+  - id: "windows-build"
+    dir: "."
+    goos:
+      - windows
     goarch:
       - amd64
       - arm64
