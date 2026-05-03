@@ -30,7 +30,12 @@ var hashCmd = &cobra.Command{
 	Short: "Gather information on a hash",
 	Long: `Gather information on a hash value from
 one of the provided sources, including Virus Total and Alient Vault`,
-	Run: func(cmd *cobra.Command, args []string) {},
+	PreRunE: func(cmd *cobra.Command, args []string) error {
+		if len(args) == 0 {
+			return cmd.Help()
+		}
+		return nil
+	},
 }
 
 func init() {

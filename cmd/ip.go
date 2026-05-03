@@ -31,7 +31,12 @@ var ipCmd = &cobra.Command{
 	Long: `Gather information on an IP address from
 one of the provided sources, including CrowdSec, Alien Vault
 and Abuse IP DB`,
-	Run: func(cmd *cobra.Command, args []string) {},
+	PreRunE: func(cmd *cobra.Command, args []string) error {
+		if len(args) == 0 {
+			return cmd.Help()
+		}
+		return nil
+	},
 }
 
 func init() {

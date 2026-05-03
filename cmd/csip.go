@@ -32,6 +32,8 @@ import (
 	"github.com/EpykLab/chx/cmd/utils/tty"
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
+
+	"github.com/EpykLab/chx/cmd/utils/preflight"
 )
 
 // researchCmd represents the research command
@@ -42,6 +44,9 @@ var csipCmd = &cobra.Command{
 	Requires a crowsec API key. Note that Crowdsec levies daily
 	limits on the amount of IP's you can check.`,
 	Run: func(cmd *cobra.Command, args []string) {
+
+		// check and see if we have args needed
+		preflight.ArgsOrError(cmd, args)
 		formated := cmd.Flag("format").Changed
 
 		input, err := tty.GetInputOrSet(cmd, args)

@@ -30,7 +30,12 @@ var domainCmd = &cobra.Command{
 	Short: "Gather information on a domain name",
 	Long: `Gather information on a domain name from
 one of the provided sources. Currently, only alient vault is supported`,
-	Run: func(cmd *cobra.Command, args []string) {},
+	PreRunE: func(cmd *cobra.Command, args []string) error {
+		if len(args) == 0 {
+			return cmd.Help()
+		}
+		return nil
+	},
 }
 
 func init() {

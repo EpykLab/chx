@@ -32,6 +32,8 @@ import (
 	"github.com/EpykLab/chx/cmd/utils/tty"
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
+
+	"github.com/EpykLab/chx/cmd/utils/preflight"
 )
 
 // domainCmd represents the domain command
@@ -41,6 +43,10 @@ var avdomainCmd = &cobra.Command{
 	Long: `Get details about a domain name from Alient Vault. Requirs
 	an AlienVault API Key`,
 	Run: func(cmd *cobra.Command, args []string) {
+
+		// check and see if we have args needed
+		preflight.ArgsOrError(cmd, args)
+
 		formated := cmd.Flag("format").Changed
 
 		input, err := tty.GetInputOrSet(cmd, args)

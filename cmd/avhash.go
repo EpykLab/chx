@@ -32,6 +32,8 @@ import (
 	"github.com/EpykLab/chx/cmd/utils/tty"
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
+
+	"github.com/EpykLab/chx/cmd/utils/preflight"
 )
 
 // hashCmd represents the hash command
@@ -42,6 +44,10 @@ var avhashCmd = &cobra.Command{
 an Alien Vault API key`,
 	Args: cobra.MaximumNArgs(1), // Allow up to one argument
 	Run: func(cmd *cobra.Command, args []string) {
+
+		// check and see if we have args needed
+		preflight.ArgsOrError(cmd, args)
+
 		formated := cmd.Flag("format").Changed
 
 		input, err := tty.GetInputOrSet(cmd, args)

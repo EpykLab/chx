@@ -28,6 +28,7 @@ import (
 	"strings"
 
 	"github.com/EpykLab/chx/cmd/sources"
+	"github.com/EpykLab/chx/cmd/utils/preflight"
 	"github.com/EpykLab/chx/cmd/utils/pretty"
 	"github.com/EpykLab/chx/cmd/utils/pretty/data"
 	"github.com/EpykLab/chx/cmd/utils/shared"
@@ -41,6 +42,9 @@ var vthashCmd = &cobra.Command{
 	Short: "Check VirusTotal",
 	Long:  `Check a hash against Virus Total`,
 	Run: func(cmd *cobra.Command, args []string) {
+		// check and see if we have args needed
+		preflight.ArgsOrError(cmd, args)
+
 		formated := cmd.Flag("format").Changed
 
 		var result interface{}
