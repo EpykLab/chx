@@ -1,9 +1,9 @@
-package pretty
+package output
 
 import (
 	"errors"
 
-	"github.com/EpykLab/chx/cmd/utils/pretty/data"
+	"github.com/EpykLab/chx/internal/output/data"
 )
 
 type markdownPrinter interface {

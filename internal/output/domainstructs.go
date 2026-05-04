@@ -1,4 +1,4 @@
-package pretty
+package output
 
 type AlienVaultDomain struct {
 	Alexa         string `json:"alexa,omitempty"`

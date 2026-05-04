@@ -1,11 +1,12 @@
 module github.com/EpykLab/chx
 
-go 1.24
+go 1.25.0
 
 require (
 	github.com/charmbracelet/log v0.4.1
 	github.com/google/go-github/v58 v58.0.0
 	github.com/spf13/cobra v1.9.1
+	golang.org/x/time v0.15.0
 )
 
 require (

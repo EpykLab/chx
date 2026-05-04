@@ -28,10 +28,9 @@ import (
 	"strings"
 
 	"github.com/EpykLab/chx/cmd/sources"
-	"github.com/EpykLab/chx/cmd/utils/preflight"
-	"github.com/EpykLab/chx/cmd/utils/pretty"
-	"github.com/EpykLab/chx/cmd/utils/pretty/data"
-	"github.com/EpykLab/chx/cmd/utils/shared"
+	"github.com/EpykLab/chx/internal/output"
+	"github.com/EpykLab/chx/internal/output/data"
+	"github.com/EpykLab/chx/internal/preflight"
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
@@ -67,12 +66,12 @@ var vthashCmd = &cobra.Command{
 		result = sources.GetHashInfoVT(input)
 
 		if formated {
-			err := pretty.PrintContentPretty(data.Hash, data.VirusTotal, result)
+			err := output.PrintContentPretty(data.Hash, data.VirusTotal, result)
 			if err != nil {
 				log.Error(err)
 			}
 		} else {
-			shared.Out(result)
+			output.Out(result)
 		}
 	},
 }

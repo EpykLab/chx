@@ -1,4 +1,4 @@
-package pretty
+package output
 
 // alienvault
 func (s *AlienVaultDomain) printer(d any) error {

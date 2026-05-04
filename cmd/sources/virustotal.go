@@ -23,74 +23,57 @@ THE SOFTWARE.
 package sources
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"os"
 
-	"github.com/EpykLab/chx/cmd/utils/configs"
-	"github.com/EpykLab/chx/cmd/utils/pretty"
+	"github.com/EpykLab/chx/internal/client"
+	"github.com/EpykLab/chx/internal/config"
+	"github.com/EpykLab/chx/internal/output"
 	"github.com/charmbracelet/log"
 )
 
-const (
-	// AlienVaultURL is the URL for the AlienVault API
-	vtUrl = "https://www.virustotal.com/api/v3/files/"
-)
+const vtUrl = "https://www.virustotal.com/api/v3/files/"
 
-type VtHeaders struct {
-	X_APIKEY     string `json:"x-apikey,omitempty"`
-	User_Agent   string `json:"User-Agent,omitempty"`
-	Content_Type string `json:"Content-Type,omitempty"`
+// VirusTotalProvider queries VirusTotal for file hash intelligence.
+type VirusTotalProvider struct {
+	APIKey string
 }
 
-// initialize alianVault API configs
-func initVtHeaders() *VtHeaders {
+func (v *VirusTotalProvider) Name() string { return "virustotal" }
 
-	key, err := configs.ReadConfig()
+func (v *VirusTotalProvider) BuildRequest(ctx context.Context, hash string) (*http.Request, error) {
+	url := fmt.Sprint(vtUrl, hash)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("User-Agent", "chx")
+	req.Header.Set("x-apikey", v.APIKey)
+	return req, nil
+}
+
+func (v *VirusTotalProvider) ParseResponse(body []byte) (any, error) {
+	var final output.VirusTotalHash
+	err := json.Unmarshal(body, &final)
+	return &final, err
+}
+
+// GetHashInfoVT returns hash intelligence from VirusTotal.
+func GetHashInfoVT(hash string) *output.VirusTotalHash {
+	key, err := config.ReadConfig()
 	if err != nil {
 		log.Error(err)
 		os.Exit(1)
 	}
-	apiKey := key.VIRUS_TOTAL_KEY
 
-	header := VtHeaders{X_APIKEY: apiKey}
-	header.User_Agent = "chx"
-	header.Content_Type = "application/json"
-
-	return &header
-}
-
-// Get hash values from Virus Total
-func GetHashInfoVT(hash string) *pretty.VirusTotalHash {
-	headers := initVtHeaders()
-
-	url := fmt.Sprint(vtUrl, hash)
-
-	req, _ := http.NewRequest("GET", url, nil)
-	req.Header.Add("Conten-Type", headers.Content_Type)
-	req.Header.Add("User-Agent", headers.User_Agent)
-	req.Header.Add("x-apikey", headers.X_APIKEY)
-
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	defer res.Body.Close()
-
-	body, err := io.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	var final pretty.VirusTotalHash
-
-	err = json.Unmarshal(body, &final)
+	p := &VirusTotalProvider{APIKey: key.VIRUS_TOTAL_KEY}
+	result, err := client.Default.Fetch(context.Background(), p, hash)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	return &final
+	return result.(*output.VirusTotalHash)
 }

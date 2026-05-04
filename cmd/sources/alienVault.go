@@ -23,113 +23,104 @@ THE SOFTWARE.
 package sources
 
 import (
+	"context"
 	"encoding/json"
-	"fmt"
-	"io"
 	"net/http"
 	"os"
 
-	"github.com/EpykLab/chx/cmd/utils/configs"
-	"github.com/EpykLab/chx/cmd/utils/pretty"
+	"github.com/EpykLab/chx/internal/client"
+	"github.com/EpykLab/chx/internal/config"
+	"github.com/EpykLab/chx/internal/output"
 	"github.com/charmbracelet/log"
 )
 
-const (
-	// AlienVaultURL is the URL for the AlienVault API
-	url = "https://otx.alienvault.com/api/v1/indicators/"
-)
+const avBaseURL = "https://otx.alienvault.com/api/v1/indicators/"
 
-type Headers struct {
-	X_OTX_API_KEY string `json:"X-OTX-API-KEY,omitempty"`
-	User_Agent    string `json:"User-Agent,omitempty"`
-	Content_Type  string `json:"Content-Type,omitempty"`
+// AlienVaultProvider is the common base for AlienVault endpoints.
+type AlienVaultProvider struct {
+	APIKey string
+	Path   string // e.g. "hostname/", "IPv4/", "file/"
 }
 
-// initialize alianVault API configs
-func initHeaders() *Headers {
+func (a *AlienVaultProvider) Name() string { return "alienvault" }
 
-	key, err := configs.ReadConfig()
+func (a *AlienVaultProvider) BuildRequest(ctx context.Context, target string) (*http.Request, error) {
+	url := avBaseURL + a.Path + target
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("User-Agent", "chx")
+	req.Header.Set("X-OTX-API-KEY", a.APIKey)
+	return req, nil
+}
+
+// AlienVaultDomainProvider queries AlienVault for domain intelligence.
+type AlienVaultDomainProvider struct{ AlienVaultProvider }
+
+func (a *AlienVaultDomainProvider) ParseResponse(body []byte) (any, error) {
+	var final output.AlienVaultDomain
+	err := json.Unmarshal(body, &final)
+	return &final, err
+}
+
+// AlienVaultIPProvider queries AlienVault for IP intelligence.
+type AlienVaultIPProvider struct{ AlienVaultProvider }
+
+func (a *AlienVaultIPProvider) ParseResponse(body []byte) (any, error) {
+	var final output.AlientVaultIP
+	err := json.Unmarshal(body, &final)
+	return &final, err
+}
+
+// AlienVaultHashProvider queries AlienVault for file hash intelligence.
+type AlienVaultHashProvider struct{ AlienVaultProvider }
+
+func (a *AlienVaultHashProvider) ParseResponse(body []byte) (any, error) {
+	var final output.AlienVaultHash
+	err := json.Unmarshal(body, &final)
+	return &final, err
+}
+
+func newAlienVaultProvider() *AlienVaultProvider {
+	key, err := config.ReadConfig()
 	if err != nil {
 		log.Error(err)
 		os.Exit(1)
 	}
-	apiKey := key.ALIEN_VAULT_KEY
-
-	header := Headers{X_OTX_API_KEY: apiKey}
-	header.User_Agent = "chx"
-	header.Content_Type = "application/json"
-
-	return &header
+	return &AlienVaultProvider{APIKey: key.ALIEN_VAULT_KEY}
 }
 
-func makeRequest(source string, term string) []byte {
-	headers := initHeaders()
-
-	// NOTE: this is probs a crap way of doing this. What is better
-	url := fmt.Sprint(url, source, term)
-
-	req, _ := http.NewRequest("GET", url, nil)
-	req.Header.Add("Conten-Type", headers.Content_Type)
-	req.Header.Add("User-Agent", headers.User_Agent)
-	req.Header.Add("X-OTX-API-KEY", headers.X_OTX_API_KEY)
-
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	defer res.Body.Close()
-
-	body, err := io.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	return body
-}
-
-// Get details about domain from AlienVault
-func GetDomainDetailsAV(domain string) *pretty.AlienVaultDomain {
-
-	source := "hostname/"
-	result := makeRequest(source, domain)
-
-	var final pretty.AlienVaultDomain
-
-	err := json.Unmarshal(result, &final)
+// GetDomainDetailsAV returns domain intelligence from AlienVault.
+func GetDomainDetailsAV(domain string) *output.AlienVaultDomain {
+	p := &AlienVaultDomainProvider{AlienVaultProvider: *newAlienVaultProvider()}
+	p.Path = "hostname/"
+	result, err := client.Default.Fetch(context.Background(), p, domain)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	return &final
+	return result.(*output.AlienVaultDomain)
 }
 
-// Get details about IP from AlienVault
-func GetIPDetails(ip string) *pretty.AlientVaultIP {
-	source := "IPv4/"
-	result := makeRequest(source, ip)
-
-	var final pretty.AlientVaultIP
-
-	err := json.Unmarshal(result, &final)
+// GetIPDetails returns IP intelligence from AlienVault.
+func GetIPDetails(ip string) *output.AlientVaultIP {
+	p := &AlienVaultIPProvider{AlienVaultProvider: *newAlienVaultProvider()}
+	p.Path = "IPv4/"
+	result, err := client.Default.Fetch(context.Background(), p, ip)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	return &final
+	return result.(*output.AlientVaultIP)
 }
 
-// Get details about hash from AlienVault
-func GetHashDetails(hash string) *pretty.AlienVaultHash {
-	source := "file/"
-	result := makeRequest(source, hash)
-
-	var final pretty.AlienVaultHash
-
-	err := json.Unmarshal(result, &final)
+// GetHashDetails returns hash intelligence from AlienVault.
+func GetHashDetails(hash string) *output.AlienVaultHash {
+	p := &AlienVaultHashProvider{AlienVaultProvider: *newAlienVaultProvider()}
+	p.Path = "file/"
+	result, err := client.Default.Fetch(context.Background(), p, hash)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	return &final
+	return result.(*output.AlienVaultHash)
 }

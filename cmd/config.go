@@ -23,7 +23,7 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"github.com/EpykLab/chx/cmd/utils/configs"
+	"github.com/EpykLab/chx/internal/config"
 	"github.com/spf13/cobra"
 )
 
@@ -33,7 +33,7 @@ var configCmd = &cobra.Command{
 	Short: "Configure chx",
 	Long:  `Configure API connections for chx`,
 	Run: func(cmd *cobra.Command, args []string) {
-		configs.UpdateConfig()
+		config.UpdateConfig()
 	},
 }
 

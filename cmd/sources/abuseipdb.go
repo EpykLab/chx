@@ -22,63 +22,60 @@ THE SOFTWARE.
 package sources
 
 import (
+	"context"
 	"encoding/json"
-	"io"
 	"net/http"
 	"os"
 
-	"github.com/EpykLab/chx/cmd/utils/configs"
-	"github.com/EpykLab/chx/cmd/utils/pretty"
+	"github.com/EpykLab/chx/internal/client"
+	"github.com/EpykLab/chx/internal/config"
+	"github.com/EpykLab/chx/internal/output"
 	"github.com/charmbracelet/log"
 )
 
-const (
-	abuseipdbURL string = "https://api.abuseipdb.com/api/v2/check"
-)
+const abuseipdbURL = "https://api.abuseipdb.com/api/v2/check"
 
-// Gets IP info from Abuse IP Database
-func GetIPInfoIpabd(ip string) *pretty.AipdbIP {
+// AbuseIPDBProvider queries AbuseIPDB for IP reputation.
+type AbuseIPDBProvider struct {
+	APIKey string
+}
 
-	// TODO: Add in ability to adjust this time range?
-	var maxAgeInDays string = "90"
+func (a *AbuseIPDBProvider) Name() string { return "abuseipdb" }
 
-	key, err := configs.ReadConfig()
+func (a *AbuseIPDBProvider) BuildRequest(ctx context.Context, ip string) (*http.Request, error) {
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, abuseipdbURL, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Key", a.APIKey)
+
+	query := req.URL.Query()
+	query.Add("ipAddress", ip)
+	query.Add("maxAgeInDays", "90")
+	req.URL.RawQuery = query.Encode()
+
+	return req, nil
+}
+
+func (a *AbuseIPDBProvider) ParseResponse(body []byte) (any, error) {
+	var final output.AipdbIP
+	err := json.Unmarshal(body, &final)
+	return &final, err
+}
+
+// GetIPInfoIpabd returns IP reputation from AbuseIPDB.
+func GetIPInfoIpabd(ip string) *output.AipdbIP {
+	key, err := config.ReadConfig()
 	if err != nil {
 		log.Error(err)
 		os.Exit(1)
 	}
 
-	apiKey := key.ABUSE_DB_KEY
-
-	req, _ := http.NewRequest("GET", abuseipdbURL, nil)
-
-	req.Header.Add("Accept", "application/json")
-	req.Header.Add("Key", apiKey)
-
-	query := req.URL.Query()
-	query.Add("ipAddress", ip)
-	query.Add("maxAgeInDays", maxAgeInDays)
-
-	req.URL.RawQuery = query.Encode()
-
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		log.Fatalf("Unable to make request: %v", err)
-	}
-
-	defer res.Body.Close()
-
-	body, err := io.ReadAll(res.Body)
-	if err != nil {
-		log.Fatalf("Unable to parse response: %v", err)
-	}
-
-	var final pretty.AipdbIP
-
-	err = json.Unmarshal(body, &final)
+	p := &AbuseIPDBProvider{APIKey: key.ABUSE_DB_KEY}
+	result, err := client.Default.Fetch(context.Background(), p, ip)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	return &final
+	return result.(*output.AipdbIP)
 }

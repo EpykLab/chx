@@ -1,12 +1,11 @@
-package tty
+package input
 
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strings"
-
-	"io"
 
 	"github.com/spf13/cobra"
 )

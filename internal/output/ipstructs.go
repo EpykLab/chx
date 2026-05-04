@@ -1,4 +1,4 @@
-package pretty
+package output
 
 type CrowdSecIP struct {
 	AsName        string  `json:"as_name,omitempty"`

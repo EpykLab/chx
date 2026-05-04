@@ -25,11 +25,10 @@ import (
 	"os"
 
 	"github.com/EpykLab/chx/cmd/sources"
-	"github.com/EpykLab/chx/cmd/utils/preflight"
-	"github.com/EpykLab/chx/cmd/utils/pretty"
-	"github.com/EpykLab/chx/cmd/utils/pretty/data"
-	"github.com/EpykLab/chx/cmd/utils/shared"
-	"github.com/EpykLab/chx/cmd/utils/tty"
+	"github.com/EpykLab/chx/internal/input"
+	"github.com/EpykLab/chx/internal/output"
+	"github.com/EpykLab/chx/internal/output/data"
+	"github.com/EpykLab/chx/internal/preflight"
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
@@ -45,7 +44,7 @@ addresses`,
 
 		formated := cmd.Flag("format").Changed
 
-		input, err := tty.GetInputOrSet(cmd, args)
+		input, err := input.GetInputOrSet(cmd, args)
 		if err != nil {
 			log.Error(err)
 			os.Exit(1)
@@ -55,12 +54,12 @@ addresses`,
 			result := sources.GetIPInfoIpabd(line)
 
 			if formated {
-				err := pretty.PrintContentPretty(data.IP, data.IpAbuseDB, result)
+				err := output.PrintContentPretty(data.IP, data.IpAbuseDB, result)
 				if err != nil {
 					log.Error(err)
 				}
 			} else {
-				shared.Out(result)
+				output.Out(result)
 			}
 		}
 

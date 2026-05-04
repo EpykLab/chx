@@ -1,4 +1,4 @@
-package pretty
+package output
 
 type AlienVaultHash struct {
 	BaseIndicator struct {

@@ -1,4 +1,4 @@
-package pretty
+package output
 
 func (s VirusTotalHash) printer(d any) error {
 	t, err := New()

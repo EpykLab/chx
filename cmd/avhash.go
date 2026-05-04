@@ -26,14 +26,12 @@ import (
 	"os"
 
 	"github.com/EpykLab/chx/cmd/sources"
-	"github.com/EpykLab/chx/cmd/utils/pretty"
-	"github.com/EpykLab/chx/cmd/utils/pretty/data"
-	"github.com/EpykLab/chx/cmd/utils/shared"
-	"github.com/EpykLab/chx/cmd/utils/tty"
+	"github.com/EpykLab/chx/internal/input"
+	"github.com/EpykLab/chx/internal/output"
+	"github.com/EpykLab/chx/internal/output/data"
+	"github.com/EpykLab/chx/internal/preflight"
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
-
-	"github.com/EpykLab/chx/cmd/utils/preflight"
 )
 
 // hashCmd represents the hash command
@@ -50,7 +48,7 @@ an Alien Vault API key`,
 
 		formated := cmd.Flag("format").Changed
 
-		input, err := tty.GetInputOrSet(cmd, args)
+		input, err := input.GetInputOrSet(cmd, args)
 		if err != nil {
 			log.Error(err)
 			os.Exit(1)
@@ -62,12 +60,12 @@ an Alien Vault API key`,
 			result := sources.GetHashDetails(line)
 
 			if formated {
-				err := pretty.PrintContentPretty(data.Hash, data.AlienVault, result)
+				err := output.PrintContentPretty(data.Hash, data.AlienVault, result)
 				if err != nil {
 					log.Error(err)
 				}
 			} else {
-				shared.Out(result)
+				output.Out(result)
 			}
 		}
 	},

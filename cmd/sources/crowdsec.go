@@ -23,55 +23,59 @@ THE SOFTWARE.
 package sources
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"os"
+	"strings"
 
-	"github.com/EpykLab/chx/cmd/utils/configs"
-	"github.com/EpykLab/chx/cmd/utils/pretty"
+	"github.com/EpykLab/chx/internal/client"
+	"github.com/EpykLab/chx/internal/config"
+	"github.com/EpykLab/chx/internal/output"
 	"github.com/charmbracelet/log"
 )
 
-const (
-	crowdsecBase string = "https://cti.api.crowdsec.net/v2/"
-)
+const crowdsecBase = "https://cti.api.crowdsec.net/v2/"
 
-// NOTE: what the heck is the Smoke part about ??
-func GetCrowdSecSmoke(ip string) *pretty.CrowdSecIP {
+// CrowdSecProvider queries CrowdSec for IP intelligence.
+type CrowdSecProvider struct {
+	APIKey string
+}
 
-	key, err := configs.ReadConfig()
+func (c *CrowdSecProvider) Name() string { return "crowdsec" }
+
+func (c *CrowdSecProvider) BuildRequest(ctx context.Context, ip string) (*http.Request, error) {
+	uri := fmt.Sprintf("smoke/%s", ip)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, crowdsecBase+uri, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("x-api-key", c.APIKey)
+	return req, nil
+}
+
+func (c *CrowdSecProvider) ParseResponse(body []byte) (any, error) {
+	var final output.CrowdSecIP
+	err := json.Unmarshal(body, &final)
+	return &final, err
+}
+
+// GetCrowdSecSmoke returns IP intelligence from CrowdSec.
+func GetCrowdSecSmoke(ip string) *output.CrowdSecIP {
+	key, err := config.ReadConfig()
 	if err != nil {
 		log.Error(err)
 		os.Exit(1)
 	}
 
-	apiKey := key.CROWD_SEC_KEY
-
-	uri := fmt.Sprintf("smoke/%s", ip)
-
-	req, _ := http.NewRequest("GET", crowdsecBase+uri, nil)
-
-	req.Header.Add("x-api-key", apiKey)
-
-	res, err := http.DefaultClient.Do(req)
+	p := &CrowdSecProvider{APIKey: key.CROWD_SEC_KEY}
+	result, err := client.Default.Fetch(context.Background(), p, ip)
 	if err != nil {
-		log.Fatal("Error getting information from Crowsec:", err)
-	}
-
-	defer res.Body.Close()
-	body, err := io.ReadAll(res.Body)
-	if err != nil {
-		log.Fatalf("Unable to parse response from crowsec %v", err)
-	}
-
-	var final pretty.CrowdSecIP
-
-	err = json.Unmarshal(body, &final)
-	if err != nil {
+		if strings.Contains(err.Error(), "not-found error 404") {
+			return &output.CrowdSecIP{Ip: ip}
+		}
 		log.Fatal(err)
 	}
-
-	return &final
+	return result.(*output.CrowdSecIP)
 }
